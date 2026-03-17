@@ -21,7 +21,7 @@ For more information on how the theme works, please visit the [**Theme Developer
 - **Corey Camilleri** | [LinkedIn Profile](#) | [GitHub Profile](#)
 - **Cole Jacobsen** | [LinkedIn Profile](#) | [GitHub Profile](#)
 - **Dylan Ryder** | [LinkedIn Profile](#) | [GitHub Profile](#)
-- **Salvin George** | [LinkedIn Profile](#) | [GitHub Profile](#)
+- **Salvin George** | [LinkedIn Profile](https://www.linkedin.com/in/salvin-george-490019353/) | [GitHub Profile](https://github.com/Salvin-George)
 
 ## Live Links
 
@@ -30,9 +30,9 @@ For more information on how the theme works, please visit the [**Theme Developer
 
 ## Documentation
 
-- Deployment Guide
-- Theme Developer Guide
-- Site Management Guide
+- [Deployment Guide](https://github.com/cp3402-students/project-2026-jcua-team6/blob/main/deployment.md)
+- [Theme Developer Guide](https://github.com/cp3402-students/project-2026-jcua-team6/blob/main/theme.md)
+- [Site Management Guide](https://github.com/cp3402-students/project-2026-jcua-team6/blob/main/site.md)
 
 ## Features
 
