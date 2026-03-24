@@ -6,7 +6,7 @@ Developed by Corey Camilleri, Cole Jacobsen, Dylan Ryder and Salvin George as me
 
 ## Overview
 
-This repository contains the custom WordPress theme [**?**](#), developed from the [**?**](#) starter theme as part of the CP3402 project to create a simple website for the company **?** using provided raw content.
+This repository contains the custom WordPress theme [**?**](#), developed from the [Underscores Starter Theme](https://underscores.me/) starter theme as part of the CP3402 project to create a simple website for the company [KC Tennis Blast](https://www.kctennisblast.com.au/) using provided raw content.
 
 The theme uses several shades and hues of gentle greens to present a clean and modern aesthetic suited to an inviting learning environment. Its clarity, structure, and content are designed for parents of:
 
@@ -14,7 +14,7 @@ The theme uses several shades and hues of gentle greens to present a clean and m
 
 The theme uses extra spacing, centre-aligned elements, and subtle highlights to draw attention to important content. Interactive elements are kept minimal to avoid distracting users from the main goal of registering new students.
 
-For more information on how the theme works, please visit the [**Theme Developer Guide**](#).
+For more information on how the theme works, please visit the [**Theme Developer Guide**](https://github.com/cp3402-students/project-2026-jcua-team6/blob/main/theme.md).
 
 ## Members (A–Z)
 
