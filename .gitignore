@@ -31,6 +31,7 @@ wp-content/themes/*
 # DOCKER
 # =========================
 docker-compose.override.yml
+docker-compose.prod.yml
 
 # =========================
 # NODE / BUILD
