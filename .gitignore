@@ -1,16 +1,7 @@
 # =========================
 # WORDPRESS CORE (IGNORE)
 # =========================
-wp-admin/
-wp-includes/
-
-# Ignore everything in uploads
-wp-content/uploads/
-
-# Ignore plugins unless custom
-wp-content/plugins/
-
-# Keep ONLY your theme
+wp-content/*
 !wp-content/themes/
 wp-content/themes/*
 !wp-content/themes/your-theme/
