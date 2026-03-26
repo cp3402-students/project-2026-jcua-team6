@@ -1,2 +1,49 @@
-wp-content
-.env.local
+# =========================
+# WORDPRESS CORE (IGNORE)
+# =========================
+wp-content/*
+!wp-content/themes/
+wp-content/themes/*
+!wp-content/themes/your-theme/
+
+# =========================
+# ENV / SECRETS
+# =========================
+.env
+.env.*
+
+# =========================
+# DATABASE FILES
+# =========================
+*.sql
+*.gz
+
+# =========================
+# DOCKER
+# =========================
+docker-compose.override.yml
+docker-compose.prod.yml
+
+# =========================
+# NODE / BUILD
+# =========================
+node_modules/
+dist/
+build/
+
+# =========================
+# SYSTEM FILES
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# LOGS
+# =========================
+*.log
