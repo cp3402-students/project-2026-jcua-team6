@@ -4,7 +4,7 @@
 wp-content/*
 !wp-content/themes/
 wp-content/themes/*
-!wp-content/themes/your-theme/
+!wp-content/themes/kctennisblastteam6
 
 # =========================
 # ENV / SECRETS
