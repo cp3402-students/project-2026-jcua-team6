@@ -4,10 +4,15 @@ on:
   push:
     branches:
       - staging
+  pull_request:
+    branches:
+      - staging
+    types: [closed]
   workflow_dispatch:
 
 jobs:
   deploy:
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
     environment: staging
     runs-on: ubuntu-latest
     env:
