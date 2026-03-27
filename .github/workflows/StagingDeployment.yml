@@ -1,14 +1,14 @@
 name: Deploy Theme to Staging
 
 on:
-  pull_request:
+  push:
     branches:
       - staging
-    types: [closed]
+  workflow_dispatch:
 
 jobs:
   deploy:
-    if: github.event.pull_request.merged == true
+    environment: staging
     runs-on: ubuntu-latest
 
     steps:
