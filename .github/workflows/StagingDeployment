@@ -1,12 +1,14 @@
-name: Deploy Theme to AWS
+name: Deploy Theme to Staging
 
 on:
-  push:
+  pull_request:
     branches:
       - staging
+    types: [closed]
 
 jobs:
   deploy:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -19,4 +21,3 @@ jobs:
           script: |
             cd ${{ secrets.WP_PATH }}/wp-content/themes/your-theme
             git pull origin staging
-            sudo chown -R www-data:www-data .
