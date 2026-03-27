@@ -15,9 +15,11 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: "3.107.50.163"
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          host: ${{secrets.LIGHTSAIL_HOST}}
+          username: ${{secrets.LIGHTSAIL_USER}}
+          key: ${{secrets.LIGHTSAIL_SSH_KEY}}
           script: |
-            cd ${{ secrets.WP_PATH }}/wp-content/themes/your-theme
+            cd /var/www/html/wp-content/themes/kctennisblastteam6
             git pull origin staging
+
+
