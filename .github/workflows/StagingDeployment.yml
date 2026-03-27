@@ -10,16 +10,55 @@ jobs:
   deploy:
     environment: staging
     runs-on: ubuntu-latest
+    env:
+      LIGHTSAIL_HOST: ${{ secrets.LIGHTSAIL_HOST }}
+      LIGHTSAIL_USER: ${{ secrets.LIGHTSAIL_USER }}
+      LIGHTSAIL_PORT: ${{ secrets.LIGHTSAIL_PORT }}
+      STAGING_THEME_PATH: ${{ secrets.STAGING_THEME_PATH }}
 
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate required secrets
+        run: |
+          if [ -z "$LIGHTSAIL_HOST" ]; then
+            echo "Missing LIGHTSAIL_HOST secret in staging environment."
+            exit 1
+          fi
+
+          if [ -z "$LIGHTSAIL_USER" ]; then
+            echo "Missing LIGHTSAIL_USER secret in staging environment."
+            exit 1
+          fi
+
+          if [ -z "$STAGING_THEME_PATH" ]; then
+            echo "Missing STAGING_THEME_PATH secret in staging environment."
+            echo "Example: /opt/bitnami/wordpress/wp-content/themes/kctennisblastteam6"
+            exit 1
+          fi
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
         with:
-          host: ${{secrets.LIGHTSAIL_HOST}}
-          username: ${{secrets.LIGHTSAIL_USER}}
-          key: ${{secrets.LIGHTSAIL_SSH_KEY}}
-          script: |
-            cd /var/www/html/wp-content/themes/kctennisblastteam6
-            git pull origin staging
+          ssh-private-key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+
+      - name: Add host to known_hosts
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+          ssh-keyscan -p "$PORT" -H "$LIGHTSAIL_HOST" >> ~/.ssh/known_hosts
+
+      - name: Ensure remote theme directory exists
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" "mkdir -p '$STAGING_THEME_PATH'"
+
+      - name: Deploy theme files to staging
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+          rsync -az --delete \
+            -e "ssh -p $PORT" \
+            ./wp-content/themes/kctennisblastteam6/ \
+            "$LIGHTSAIL_USER@$LIGHTSAIL_HOST:$STAGING_THEME_PATH/"
 
 
