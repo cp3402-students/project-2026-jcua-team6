@@ -54,18 +54,7 @@ jobs:
           if [ -n "$STAGING_THEME_PATH" ]; then
             TARGET_PATH="$STAGING_THEME_PATH"
           else
-            TARGET_PATH=$(ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" '
-              for p in \
-                /opt/bitnami/wordpress/wp-content/themes \
-                /bitnami/wordpress/wp-content/themes \
-                /var/www/html/wp-content/themes; do
-                if [ -d "$p" ]; then
-                  echo "$p/kctennisblastteam6"
-                  exit 0
-                fi
-              done
-              exit 1
-            ')
+            TARGET_PATH="/var/www/html/wp-content/themes/kctennisblastteam6"
           fi
 
           if [ -z "$TARGET_PATH" ]; then
@@ -80,12 +69,16 @@ jobs:
       - name: Ensure remote theme directory exists
         run: |
           PORT="${LIGHTSAIL_PORT:-22}"
-          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" "sudo mkdir -p '$TARGET_PATH'"
+          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" "mkdir -p '$TARGET_PATH' || sudo mkdir -p '$TARGET_PATH'"
 
       - name: Deploy theme files to staging
         run: |
           PORT="${LIGHTSAIL_PORT:-22}"
           rsync -az --delete \
+            -e "ssh -p $PORT" \
+            ./wp-content/themes/kctennisblastteam6/ \
+            "$LIGHTSAIL_USER@$LIGHTSAIL_HOST:$TARGET_PATH/" \
+          || rsync -az --delete \
             --rsync-path="sudo rsync" \
             -e "ssh -p $PORT" \
             ./wp-content/themes/kctennisblastteam6/ \
