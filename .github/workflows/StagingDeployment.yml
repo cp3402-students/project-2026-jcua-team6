@@ -1,0 +1,23 @@
+name: Deploy Theme to Staging
+
+on:
+  pull_request:
+    branches:
+      - staging
+    types: [closed]
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ${{ secrets.WP_PATH }}/wp-content/themes/your-theme
+            git pull origin staging
