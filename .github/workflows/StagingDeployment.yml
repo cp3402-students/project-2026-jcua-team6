@@ -51,13 +51,14 @@ jobs:
         run: |
           PORT="${LIGHTSAIL_PORT:-22}"
           TARGET_PATH="${STAGING_THEME_PATH:-/opt/bitnami/wordpress/wp-content/themes/kctennisblastteam6}"
-          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" "mkdir -p '$TARGET_PATH'"
+          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" "sudo mkdir -p '$TARGET_PATH'"
 
       - name: Deploy theme files to staging
         run: |
           PORT="${LIGHTSAIL_PORT:-22}"
           TARGET_PATH="${STAGING_THEME_PATH:-/opt/bitnami/wordpress/wp-content/themes/kctennisblastteam6}"
           rsync -az --delete \
+            --rsync-path="sudo rsync" \
             -e "ssh -p $PORT" \
             ./wp-content/themes/kctennisblastteam6/ \
             "$LIGHTSAIL_USER@$LIGHTSAIL_HOST:$TARGET_PATH/"
