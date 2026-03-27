@@ -32,9 +32,8 @@ jobs:
             exit 1
           fi
 
-          if [ -z "$STAGING_THEME_PATH" ]; then
-            echo "Missing STAGING_THEME_PATH secret in staging environment."
-            echo "Example: /opt/bitnami/wordpress/wp-content/themes/kctennisblastteam6"
+          if [ -z "${{ secrets.LIGHTSAIL_SSH_KEY }}" ]; then
+            echo "Missing LIGHTSAIL_SSH_KEY secret in staging environment."
             exit 1
           fi
 
@@ -51,14 +50,16 @@ jobs:
       - name: Ensure remote theme directory exists
         run: |
           PORT="${LIGHTSAIL_PORT:-22}"
-          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" "mkdir -p '$STAGING_THEME_PATH'"
+          TARGET_PATH="${STAGING_THEME_PATH:-/opt/bitnami/wordpress/wp-content/themes/kctennisblastteam6}"
+          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" "mkdir -p '$TARGET_PATH'"
 
       - name: Deploy theme files to staging
         run: |
           PORT="${LIGHTSAIL_PORT:-22}"
+          TARGET_PATH="${STAGING_THEME_PATH:-/opt/bitnami/wordpress/wp-content/themes/kctennisblastteam6}"
           rsync -az --delete \
             -e "ssh -p $PORT" \
             ./wp-content/themes/kctennisblastteam6/ \
-            "$LIGHTSAIL_USER@$LIGHTSAIL_HOST:$STAGING_THEME_PATH/"
+            "$LIGHTSAIL_USER@$LIGHTSAIL_HOST:$TARGET_PATH/"
 
 
