@@ -54,7 +54,11 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 # Generic
 --------------------------------------------------------------*/
 body{
-	background-color: #4169e1;
+	background-color: #111;
+}
+
+h1{
+	color: #800080;
 }
 /* Normalize
 --------------------------------------------- */
