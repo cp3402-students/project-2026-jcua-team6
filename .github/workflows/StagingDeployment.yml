@@ -1,0 +1,105 @@
+name: Deploy Theme to Staging
+
+on:
+  push:
+    branches:
+      - staging
+  pull_request:
+    branches:
+      - staging
+    types: [closed]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
+    environment: staging
+    runs-on: ubuntu-latest
+    env:
+      LIGHTSAIL_HOST: ${{ secrets.LIGHTSAIL_HOST }}
+      LIGHTSAIL_USER: ${{ secrets.LIGHTSAIL_USER }}
+      LIGHTSAIL_PORT: ${{ secrets.LIGHTSAIL_PORT }}
+      STAGING_THEME_PATH: ${{ secrets.STAGING_THEME_PATH }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate required secrets
+        run: |
+          if [ -z "$LIGHTSAIL_HOST" ]; then
+            echo "Missing LIGHTSAIL_HOST secret in staging environment."
+            exit 1
+          fi
+
+          if [ -z "$LIGHTSAIL_USER" ]; then
+            echo "Missing LIGHTSAIL_USER secret in staging environment."
+            exit 1
+          fi
+
+          if [ -z "${{ secrets.LIGHTSAIL_SSH_KEY }}" ]; then
+            echo "Missing LIGHTSAIL_SSH_KEY secret in staging environment."
+            exit 1
+          fi
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+
+      - name: Add host to known_hosts
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+          ssh-keyscan -p "$PORT" -H "$LIGHTSAIL_HOST" >> ~/.ssh/known_hosts
+
+      - name: Resolve target theme path
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+
+          if [ -n "$STAGING_THEME_PATH" ]; then
+            TARGET_PATH="$STAGING_THEME_PATH"
+          else
+            TARGET_PATH="/var/www/html/wp-content/themes/kctennisblastteam6"
+          fi
+
+          if [ -z "$TARGET_PATH" ]; then
+            echo "Could not determine WordPress themes path on remote host."
+            echo "Set STAGING_THEME_PATH secret, e.g. /opt/bitnami/wordpress/wp-content/themes/kctennisblastteam6"
+            exit 1
+          fi
+
+          echo "TARGET_PATH=$TARGET_PATH" >> "$GITHUB_ENV"
+          echo "Using TARGET_PATH=$TARGET_PATH"
+
+      - name: Ensure remote theme directory exists
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" "mkdir -p '$TARGET_PATH' || sudo mkdir -p '$TARGET_PATH'"
+
+      - name: Deploy theme files to staging
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+          rsync -az --delete \
+            -e "ssh -p $PORT" \
+            ./wp-content/themes/kctennisblastteam6/ \
+            "$LIGHTSAIL_USER@$LIGHTSAIL_HOST:$TARGET_PATH/" \
+          || rsync -az --delete \
+            --rsync-path="sudo rsync" \
+            -e "ssh -p $PORT" \
+            ./wp-content/themes/kctennisblastteam6/ \
+            "$LIGHTSAIL_USER@$LIGHTSAIL_HOST:$TARGET_PATH/"
+
+      - name: Verify deployed theme on remote
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" "\
+            test -f '$TARGET_PATH/style.css' && \
+            echo 'Theme style.css found:' && \
+            ls -la '$TARGET_PATH/style.css' && \
+            echo 'Theme header:' && \
+            head -n 20 '$TARGET_PATH/style.css' | sed -n '/Theme Name/p' && \
+            echo 'Available themes directory:' && \
+            ls -la \"$(dirname '$TARGET_PATH')\"\
+          "
+
+
