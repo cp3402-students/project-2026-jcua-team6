@@ -25,8 +25,8 @@ For more information on how the theme works, please visit the [**Theme Developer
 
 ## Live Links
 
-- **Production site:** [? Website](#) | WP Admin (password not provided)
-- **Staging site:** [? Website](#) | WP Admin (password not provided)
+- **Production site:** [KCTennisBlastTeam6](http://3.25.53.102/) | WP Admin (password not provided)
+- **Staging site:** [Team6-Staging](http://3.107.50.163) | WP Admin (password not provided)
 
 ## Documentation
 
