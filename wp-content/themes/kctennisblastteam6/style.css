@@ -50,6 +50,16 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 --------------------------------------------------------------*/
 
+:root {
+	--primary-color: #ffffff;
+	--secondary-color: #000000;
+	--button-color: #c2ff00;
+	--button-hover-color: #034a1f;
+	--link-color: #c2ff00;
+	--link-visited-color: #034a1f;
+	--link-hover-color: #034a1f;
+}
+
 /*--------------------------------------------------------------
 # Generic
 --------------------------------------------------------------*/
@@ -66,7 +76,7 @@ header {
 }
 
 main {
-	background-color: #ff0000;
+	background-color: var(--primary-color);
 }
 /* Normalize
 --------------------------------------------- */
@@ -763,7 +773,7 @@ textarea {
 
 .post,
 .page {
-	margin: 0 0 1.5em;
+	margin: auto;
 }
 
 .updated:not(.published) {
@@ -781,8 +791,45 @@ textarea {
 	margin: 0 0 1.5em;
 }
 
+main {
+	background-color: var(--primary-color);
+	width: 100%;
+}
+
+article {
+	width: 80%;
+}
+
+.wp-block-buttons {
+	margin: 1.5em;
+}
+
+.wp-block-button__link {
+	background-color: var(--button-color);
+	color: var(--secondary-color);
+	transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.wp-block-button__link:hover,
+.wp-block-button__link:focus {
+	background-color: var(--button-hover-color);
+	color: var(--primary-color);
+}
+
+a {
+	color: var(--link-color);
+}
+
+p {
+	font: Barlow Light;
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 2!important;
+
+}
+
+
 /* Comments
---------------------------------------------- */
 .comment-content a {
 	word-wrap: break-word;
 }
