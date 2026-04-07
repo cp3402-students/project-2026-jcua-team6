@@ -841,6 +841,10 @@ h2 {
 	font-size: 32px;
 }
 
+.is-layout-flex > :is(*, div) {
+    margin: auto !important;
+}
+
 
 /* Comments
 .comment-content a {
