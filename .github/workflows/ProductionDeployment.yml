@@ -92,4 +92,22 @@ jobs:
       - name: Verify deployed theme on remote
         run: |
           PORT="${LIGHTSAIL_PORT:-22}"
-          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" test -f '$TARGET_PATH/style.css' && echo "Theme deployed successfully"</content>
+          PORT="${PORT//$'\r'/}"
+
+          if ! [[ "$PORT" =~ ^[0-9]+$ ]]; then
+            echo "Invalid PRODUCTION_LIGHTSAIL_PORT secret: '$PORT'"
+            exit 1
+          fi
+
+          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" 'bash -s' -- "$TARGET_PATH" <<'EOF'
+          set -e
+          TARGET_PATH="$1"
+
+          test -f "$TARGET_PATH/style.css"
+          echo "Theme style.css found:"
+          ls -la "$TARGET_PATH/style.css"
+          echo "Theme header:"
+          head -n 20 "$TARGET_PATH/style.css" | sed -n '/Theme Name/p'
+          echo "Available themes directory:"
+          ls -la "$(dirname "$TARGET_PATH")"
+          EOF
