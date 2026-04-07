@@ -16,9 +16,9 @@ jobs:
     environment: production
     runs-on: ubuntu-latest
     env:
-      LIGHTSAIL_HOST: ${{ secrets.LIGHTSAIL_HOST }}
-      LIGHTSAIL_USER: ${{ secrets.LIGHTSAIL_USER }}
-      LIGHTSAIL_PORT: ${{ secrets.LIGHTSAIL_PORT }}
+      LIGHTSAIL_HOST: ${{ secrets.PRODUCTION_LIGHTSAIL_HOST }}
+      LIGHTSAIL_USER: ${{ secrets.PRODUCTION_LIGHTSAIL_USER }}
+      LIGHTSAIL_PORT: ${{ secrets.PRODUCTION_LIGHTSAIL_PORT }}
       PRODUCTION_THEME_PATH: ${{ secrets.PRODUCTION_THEME_PATH }}
 
     steps:
@@ -28,24 +28,24 @@ jobs:
       - name: Validate required secrets
         run: |
           if [ -z "$LIGHTSAIL_HOST" ]; then
-            echo "Missing LIGHTSAIL_HOST secret in production environment."
+            echo "Missing PRODUCTION_LIGHTSAIL_HOST secret in production environment."
             exit 1
           fi
 
           if [ -z "$LIGHTSAIL_USER" ]; then
-            echo "Missing LIGHTSAIL_USER secret in production environment."
+            echo "Missing PRODUCTION_LIGHTSAIL_USER secret in production environment."
             exit 1
           fi
 
-          if [ -z "${{ secrets.LIGHTSAIL_SSH_KEY }}" ]; then
-            echo "Missing LIGHTSAIL_SSH_KEY secret in production environment."
+          if [ -z "${{ secrets.PRODUCTION_LIGHTSAIL_SSH_KEY }}" ]; then
+            echo "Missing PRODUCTION_LIGHTSAIL_SSH_KEY secret in production environment."
             exit 1
           fi
 
       - name: Start SSH agent
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+          ssh-private-key: ${{ secrets.PRODUCTION_LIGHTSAIL_SSH_KEY }}
 
       - name: Add host to known_hosts
         run: |
