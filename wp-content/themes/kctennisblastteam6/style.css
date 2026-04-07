@@ -58,9 +58,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	--link-color: #c2ff00;
 	--link-visited-color: #034a1f;
 	--link-hover-color: #034a1f;
-	--font-body: "Poppins", sans-serif;
-	--font-heading: "Fjalla One", sans-serif;
-	--font-button: "Fjalla One", sans-serif;
+	--font-body: "Barlow", sans-serif;
+	--font-heading: "Abel", sans-serif;
+	--font-button: "Poppins", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -824,12 +824,12 @@ article {
 }
 
 a {
-	font-family: var(--font-body);
+	font-family: var(--font-button);
 	color: var(--link-color);
 }
 
 p {
-	font-family: "Barlow", sans-serif;
+	font-family: var(--font-body);
 	font-weight: 300;
 	font-size: 14px;
 	line-height: 2!important;
