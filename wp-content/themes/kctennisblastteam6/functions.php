@@ -138,7 +138,8 @@ add_action( 'widgets_init', 'kctennisblastteam6_widgets_init' );
  * Enqueue scripts and styles.
  */
 function kctennisblastteam6_scripts() {
-	wp_enqueue_style( 'kctennisblastteam6-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'kctennisblastteam6-fonts', 'https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@300;400&family=Fjalla+One&family=Poppins:wght@300;400;600&display=swap', array(), null );
+	wp_enqueue_style( 'kctennisblastteam6-style', get_stylesheet_uri(), array( 'kctennisblastteam6-fonts' ), _S_VERSION );
 	wp_style_add_data( 'kctennisblastteam6-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'kctennisblastteam6-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
