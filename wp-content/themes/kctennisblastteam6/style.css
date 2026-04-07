@@ -50,6 +50,19 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 --------------------------------------------------------------*/
 
+:root {
+	--primary-color: #ffffff;
+	--secondary-color: #000000;
+	--button-color: #c2ff00;
+	--button-hover-color: #034a1f;
+	--link-color: #c2ff00;
+	--link-visited-color: #034a1f;
+	--link-hover-color: #034a1f;
+	--font-body: "Barlow", sans-serif;
+	--font-heading: "Abel", sans-serif;
+	--font-button: "Poppins", sans-serif;
+}
+
 /*--------------------------------------------------------------
 # Generic
 --------------------------------------------------------------*/
@@ -66,7 +79,7 @@ header {
 }
 
 main {
-	background-color: #ff0000;
+	background-color: var(--primary-color);
 }
 /* Normalize
 --------------------------------------------- */
@@ -417,7 +430,7 @@ select,
 optgroup,
 textarea {
 	color: #404040;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: var(--font-body);
 	font-size: 1rem;
 	line-height: 1.5;
 }
@@ -428,6 +441,7 @@ h3,
 h4,
 h5,
 h6 {
+	font-family: var(--font-heading);
 	clear: both;
 }
 
@@ -575,6 +589,7 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
+	font-family: var(--font-button);
 	border: 1px solid;
 	border-color: #ccc #ccc #bbb;
 	border-radius: 3px;
@@ -763,7 +778,7 @@ textarea {
 
 .post,
 .page {
-	margin: 0 0 1.5em;
+	margin: auto;
 }
 
 .updated:not(.published) {
@@ -781,8 +796,54 @@ textarea {
 	margin: 0 0 1.5em;
 }
 
+main {
+	background-color: var(--primary-color);
+	width: 100%;
+}
+
+article {
+	width: 80%;
+	-webkit-font-smoothing: antialiased;
+}
+
+.wp-block-buttons {
+	margin: 1.5em;
+}
+
+.wp-block-button__link {
+	font-family: var(--font-button);
+	background-color: var(--button-color);
+	color: var(--secondary-color);
+	transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.wp-block-button__link:hover,
+.wp-block-button__link:focus {
+	background-color: var(--button-hover-color);
+	color: var(--primary-color);
+}
+
+a {
+	font-family: var(--font-button);
+	color: var(--link-color);
+}
+
+p {
+	font-family: var(--font-body);
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 2!important;
+
+}
+
+h2 {
+	font-family: var(--font-heading);
+	font-weight: 400;
+	font-size: 32px;
+}
+
+
 /* Comments
---------------------------------------------- */
 .comment-content a {
 	word-wrap: break-word;
 }

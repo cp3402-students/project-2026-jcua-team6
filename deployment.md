@@ -42,11 +42,11 @@ WP_PORT=8000
 LOCAL_URL=http://localhost:8000
 ```
 
-YOu may change these varables to suit your needs, it is recommended to change the `WP_PORT` to another value if you encounter issues with port being already used.
+You may change these varables to suit your needs, it is recommended to change the `WP_PORT` to another value if you encounter issues with port being already used.
 
 ## Step 4 - Configure `docker-compose.local.yml`
 
-Create `docker-compose.local.yml` in root directory. 
+Create `docker-compose.local.yml` in root directory if not already there. 
 
 ```yml
 version: '3.8'
@@ -88,7 +88,7 @@ volumes:
 From the repository root, run:
 
 ```sh
-docker compose -f docker-compose.local.yml up -d
+docker compose --env-file .env.local -f docker-compose.local.yml up -d
 ```
 
 
