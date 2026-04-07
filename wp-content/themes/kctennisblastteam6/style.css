@@ -821,11 +821,18 @@ a {
 }
 
 p {
-	font: Barlow Light;
+	font-family: "Barlow", sans-serif;
 	font-weight: 300;
 	font-size: 14px;
 	line-height: 2!important;
 
+}
+
+h2 {
+	font-family: "Abel", sans-serif;
+	font-weight: 400;
+	font-size: 32px;
+	-webkit-font-smoothing: antialiased;
 }
 
 
