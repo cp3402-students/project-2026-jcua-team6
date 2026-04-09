@@ -47,15 +47,6 @@
 				<p class="footer-tagline-sub"><?php esc_html_e( 'in TENNIS!', 'kctennisblastteam6' ); ?></p>
 			</div><!-- .footer-tagline -->
 		</div><!-- .footer-content -->
-
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'kctennisblastteam6' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'kctennisblastteam6' ), 'WordPress' );
-				?>
-			</a>
-		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
