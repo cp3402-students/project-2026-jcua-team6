@@ -691,7 +691,7 @@ textarea {
 }
 
 .main-navigation ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 3px 3px var(--primary-color);
 	float: left;
 	position: absolute;
 	top: 100%;
@@ -1062,7 +1062,7 @@ h2 {
 	max-width: 1200px;
 	margin: 0 auto 2em;
 	padding-bottom: 2em;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	border-bottom: 1px solid var(--secondary-color);
 }
 
 .footer-section {
@@ -1109,14 +1109,14 @@ h2 {
 }
 
 .footer-contact-list li:last-child {
-	color: rgba(255, 255, 255, 0.8);
+	color: var(--primary-color);
 	font-size: 0.9em;
 }
 
 .footer-hours p {
 	font-family: var(--font-body);
 	margin: 0.5em 0;
-	color: rgba(255, 255, 255, 0.9);
+	color: var(--primary-color);
 }
 
 .hours-emphasis {
@@ -1148,7 +1148,7 @@ h2 {
 	text-align: center;
 	font-family: var(--font-body);
 	font-size: 0.85em;
-	color: rgba(255, 255, 255, 0.6);
+	color: var(--primary-color);
 	padding-top: 1.5em;
 }
 
