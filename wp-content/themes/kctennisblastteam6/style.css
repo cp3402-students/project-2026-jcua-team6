@@ -71,11 +71,16 @@ body{
 }
 
 h1{
-	color: #800080;
+	color: var(--link-color);
 }
 
 header {
-	background-color: #00ff62;
+	background-color: var(--secondary-color);
+
+}
+
+.site-title {
+	color: var(--button-hover-color);
 }
 
 main {
@@ -565,7 +570,7 @@ a {
 }
 
 a:visited {
-	color: #800080;
+	color: var(--link-color);
 }
 
 a:hover,
@@ -593,10 +598,11 @@ input[type="submit"] {
 	border: 1px solid;
 	border-color: #ccc #ccc #bbb;
 	border-radius: 3px;
-	background: #e6e6e6;
-	color: rgba(0, 0, 0, 0.8);
+	background: var(--button-color);
+	color: var(--secondary-color);
 	line-height: 1;
 	padding: 0.6em 1em 0.4em;
+	margin: 0.5em 0.5em 0.5em 0;
 }
 
 button:hover,
@@ -676,9 +682,20 @@ textarea {
 
 /* Navigation
 --------------------------------------------- */
+.menu-button {
+	display: block;
+	color: var(--primary-color);
+	background-color: var(--button-color);
+	border: none;
+	padding: 0.5em 1em;
+	margin-bottom: 0.5em;
+	font-family: var(--font-button);
+}
+
+
 .main-navigation {
 	display: block;
-	width: 100%;
+	width: auto;
 }
 
 .main-navigation ul {
@@ -686,6 +703,7 @@ textarea {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+	padding-top: 1em;
 }
 
 .main-navigation ul ul {
@@ -700,6 +718,7 @@ textarea {
 .main-navigation ul ul ul {
 	left: -999em;
 	top: 0;
+	
 }
 
 .main-navigation ul ul li:hover > ul,
@@ -710,6 +729,7 @@ textarea {
 
 .main-navigation ul ul a {
 	width: 200px;
+	padding-left: 3;
 }
 
 .main-navigation ul li:hover > ul,
@@ -724,22 +744,31 @@ textarea {
 .main-navigation a {
 	display: block;
 	text-decoration: none;
+	margin: 0, auto;
+	padding: 0.5em 1em;
 }
 
 /* Small menu. */
 .menu-toggle,
 .main-navigation.toggled ul {
 	display: block;
+	background-color: var(--link-color);
 }
 
 @media screen and (min-width: 37.5em) {
+
 
 	.menu-toggle {
 		display: none;
 	}
 
-	.main-navigation ul {
+	.main-navigation > div > ul,
+	.main-navigation > ul,
+	#primary-menu {
 		display: flex;
+		align-items: center;
+		flex-direction: row;
+		flex-wrap: nowrap;
 	}
 }
 
@@ -825,14 +854,11 @@ article {
 
 a {
 	font-family: var(--font-button);
-	color: var(--link-color);
+	color: var(--secondary-color);
 }
 
 p {
-	font-family: var(--font-body);
-	font-weight: 300;
-	font-size: 14px;
-	line-height: 2!important;
+	display: none;
 
 }
 
