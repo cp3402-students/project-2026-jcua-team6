@@ -858,8 +858,10 @@ a {
 }
 
 p {
-	display: none;
-
+	font-family: var(--font-body);
+	font-weight: 300;
+	font-size: 16px;
+	line-height: 2;
 }
 
 h2 {
@@ -868,6 +870,34 @@ h2 {
 	font-size: 32px;
 }
 
+/* .is-layout-flex > :is(*, div) {
+    margin: 0.75rem !important;
+} */
+
+.has-black-background-color {
+	width: 100vw;
+	max-width: 100vw;
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+}
+
+.has-black-background-color > * {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.wp-block-columns {
+	gap: 0;
+}
+
+.wp-block-post {
+	margin-bottom: 5rem;
+}
+
+.wp-block-post-title {
+	margin-top: 0;
+}
 
 /* Comments
 .comment-content a {
