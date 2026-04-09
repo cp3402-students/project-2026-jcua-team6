@@ -10,13 +10,20 @@ services:
       MARIADB_USER: ${DB_USER}
       MARIADB_PASSWORD: ${DB_PASSWORD}
       MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'no'
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   wordpress:
     image: wordpress:php8.2-apache
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: unless-stopped
     ports:
       - "${WP_PORT}:80"
