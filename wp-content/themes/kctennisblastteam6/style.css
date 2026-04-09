@@ -863,9 +863,9 @@ h2 {
 	font-size: 32px;
 }
 
-.is-layout-flex > :is(*, div) {
+/* .is-layout-flex > :is(*, div) {
     margin: 0.75rem !important;
-}
+} */
 
 .has-black-background-color {
 	width: 100vw !important;
@@ -880,6 +880,17 @@ h2 {
 	margin-right: auto;
 }
 
+.wp-block-columns {
+	gap: 0 !important;
+}
+
+.wp-block-post {
+	margin-bottom: 5rem !important;
+}
+
+.wp-block-post-title {
+	margin-top: 0;
+}
 
 /* Comments
 .comment-content a {
