@@ -56,6 +56,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	--button-color: #c2ff00;
 	--button-hover-color: #034a1f;
 	--link-color: #c2ff00;
+	--link-color-secondary: #000000;
 	--link-visited-color: #034a1f;
 	--link-hover-color: #034a1f;
 	--font-body: "Barlow", sans-serif;
@@ -66,20 +67,13 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # Generic
 --------------------------------------------------------------*/
-body{
-	background-color: #111;
-}
-
-h1{
-	color: #800080;
-}
-
-header {
-	background-color: #00ff62;
-}
 
 main {
 	background-color: var(--primary-color);
+}
+
+.entry-title {
+	display: none;
 }
 /* Normalize
 --------------------------------------------- */
@@ -827,6 +821,10 @@ article {
 a {
 	font-family: var(--font-button);
 	color: var(--link-color);
+}
+
+article > * a {
+	color: var(--link-color-secondary);
 }
 
 p {
