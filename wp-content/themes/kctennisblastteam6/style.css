@@ -56,6 +56,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	--button-color: #c2ff00;
 	--button-hover-color: #034a1f;
 	--link-color: #c2ff00;
+	--link-color-secondary: #000000;
 	--link-visited-color: #034a1f;
 	--link-hover-color: #034a1f;
 	--font-body: "Barlow", sans-serif;
@@ -66,25 +67,13 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # Generic
 --------------------------------------------------------------*/
-body{
-	background-color: #111;
-}
-
-h1{
-	color: var(--link-color);
-}
-
-header {
-	background-color: var(--secondary-color);
-
-}
-
-.site-title {
-	color: var(--button-hover-color);
-}
 
 main {
 	background-color: var(--primary-color);
+}
+
+.entry-title {
+	display: none;
 }
 /* Normalize
 --------------------------------------------- */
@@ -271,6 +260,7 @@ button,
 [type="reset"],
 [type="submit"] {
 	-webkit-appearance: button;
+	appearance: button;
 }
 
 /**
@@ -354,6 +344,7 @@ textarea {
  */
 [type="search"] {
 	-webkit-appearance: textfield;
+	appearance: textfield;
 	outline-offset: -2px;
 }
 
@@ -707,7 +698,7 @@ textarea {
 }
 
 .main-navigation ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 3px 3px var(--primary-color);
 	float: left;
 	position: absolute;
 	top: 100%;
@@ -832,6 +823,7 @@ main {
 
 article {
 	width: 80%;
+	margin: auto;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -857,15 +849,35 @@ a {
 	color: var(--secondary-color);
 }
 
+article > * a {
+	color: var(--link-color-secondary);
+}
+
 p {
 	display: none;
 
 }
 
 h2 {
-	font-family: var(--font-heading);
 	font-weight: 400;
 	font-size: 32px;
+}
+
+.is-layout-flex > :is(*, div) {
+    margin: 0.75rem !important;
+}
+
+.has-black-background-color {
+	width: 100vw !important;
+	max-width: 100vw !important;
+	margin-left: calc(50% - 50vw) !important;
+	margin-right: calc(50% - 50vw) !important;
+}
+
+.has-black-background-color > * {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 
@@ -1015,12 +1027,11 @@ h2 {
 }
 
 .screen-reader-text:focus {
-	background-color: #f1f1f1;
+	background-color: var(--primary-color);
 	border-radius: 3px;
-	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	box-shadow: 0 0 2px 2px var(--secondary-color);
 	clip: auto !important;
 	clip-path: none;
-	color: #21759b;
 	display: block;
 	font-size: 0.875rem;
 	font-weight: 700;
@@ -1067,4 +1078,151 @@ h2 {
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 1.5em;
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+
+.site-footer {
+	background-color: var(--secondary-color);
+	color: var(--primary-color);
+	padding: 3em 2em;
+	margin-top: 3em;
+}
+
+.footer-content {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 2em;
+	max-width: 1200px;
+	margin: 0 auto 2em;
+	padding-bottom: 2em;
+	border-bottom: 1px solid var(--secondary-color);
+}
+
+.footer-section {
+	text-align: center;
+}
+
+.footer-heading {
+	font-family: var(--font-heading);
+	font-size: 1.2em;
+	font-weight: 400;
+	color: var(--button-color);
+	margin: 0 0 1em 0;
+	letter-spacing: 0.05em;
+}
+
+.footer-contact-list,
+.footer-social-links {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.footer-contact-list li,
+.footer-social-links li {
+	margin-bottom: 0.75em;
+	font-family: var(--font-body);
+	font-size: 0.95em;
+	line-height: 1.6;
+}
+
+.footer-contact-list li a,
+.footer-social-links li a {
+	color: var(--link-color);
+	text-decoration: none;
+	transition: color 0.3s ease-in-out;
+}
+
+.footer-contact-list li a:hover,
+.footer-social-links li a:hover,
+.footer-contact-list li a:focus,
+.footer-social-links li a:focus {
+	color: var(--link-hover-color);
+	text-decoration: underline;
+}
+
+.footer-contact-list li:last-child {
+	color: var(--primary-color);
+	font-size: 0.9em;
+}
+
+.footer-hours p {
+	font-family: var(--font-body);
+	margin: 0.5em 0;
+	color: var(--primary-color);
+}
+
+.hours-emphasis {
+	font-family: var(--font-heading);
+	font-size: 1.8em;
+	font-weight: 400;
+	color: var(--button-color);
+	margin-top: 0.5em !important;
+}
+
+.footer-tagline-text {
+	font-family: var(--font-heading);
+	font-size: 1.1em;
+	color: var(--button-color);
+	margin: 0 0 0.5em 0;
+	letter-spacing: 0.1em;
+	font-weight: 400;
+}
+
+.footer-tagline-sub {
+	font-family: var(--font-heading);
+	font-size: 1.3em;
+	color: var(--primary-color);
+	margin: 0;
+	font-weight: 400;
+}
+
+.site-info {
+	text-align: center;
+	font-family: var(--font-body);
+	font-size: 0.85em;
+	color: var(--primary-color);
+	padding-top: 1.5em;
+}
+
+.site-info a {
+	color: var(--link-color);
+	text-decoration: none;
+}
+
+.site-info a:hover,
+.site-info a:focus {
+	color: var(--link-hover-color);
+	text-decoration: underline;
+}
+
+/* Footer responsive adjustments */
+@media screen and (max-width: 768px) {
+	.footer-content {
+		grid-template-columns: 1fr;
+		gap: 1.5em;
+	}
+
+	.site-footer {
+		padding: 2em 1em;
+	}
+
+	.footer-heading {
+		font-size: 1.1em;
+	}
+
+	.hours-emphasis {
+		font-size: 1.5em;
+	}
+
+	.footer-tagline-text {
+		font-size: 1em;
+	}
+
+	.footer-tagline-sub {
+		font-size: 1.1em;
+	}
 }

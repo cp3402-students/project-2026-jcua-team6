@@ -85,14 +85,20 @@ volumes:
 
 ## Step 5 — Start the local environment
 
-From the repository root, run:
+First ensure that no instances of the container are running and remove existing volumes: 
+
+```sh
+docker compose --env-file .env.local -f docker-compose.local.yml down -v
+```
+ 
+Next, from the repository root, run:
 
 ```sh
 docker compose --env-file .env.local -f docker-compose.local.yml up -d
 ```
 
 
-This starts two services:
+This will start two services:
 
 - `wordpress` using `wordpress:php8.2-apache`
 - `db` using `mariadb:11`
