@@ -1,0 +1,113 @@
+name: Deploy Theme to Production
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
+    environment: production
+    runs-on: ubuntu-latest
+    env:
+      LIGHTSAIL_HOST: ${{ secrets.PRODUCTION_LIGHTSAIL_HOST }}
+      LIGHTSAIL_USER: ${{ secrets.PRODUCTION_LIGHTSAIL_USER }}
+      LIGHTSAIL_PORT: ${{ secrets.PRODUCTION_LIGHTSAIL_PORT }}
+      PRODUCTION_THEME_PATH: ${{ secrets.PRODUCTION_THEME_PATH }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate required secrets
+        run: |
+          if [ -z "$LIGHTSAIL_HOST" ]; then
+            echo "Missing PRODUCTION_LIGHTSAIL_HOST secret in production environment."
+            exit 1
+          fi
+
+          if [ -z "$LIGHTSAIL_USER" ]; then
+            echo "Missing PRODUCTION_LIGHTSAIL_USER secret in production environment."
+            exit 1
+          fi
+
+          if [ -z "${{ secrets.PRODUCTION_LIGHTSAIL_SSH_KEY }}" ]; then
+            echo "Missing PRODUCTION_LIGHTSAIL_SSH_KEY secret in production environment."
+            exit 1
+          fi
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.PRODUCTION_LIGHTSAIL_SSH_KEY }}
+
+      - name: Add host to known_hosts
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+          ssh-keyscan -p "$PORT" -H "$LIGHTSAIL_HOST" >> ~/.ssh/known_hosts
+
+      - name: Resolve target theme path
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+
+          if [ -n "$PRODUCTION_THEME_PATH" ]; then
+            TARGET_PATH="$PRODUCTION_THEME_PATH"
+          else
+            TARGET_PATH="/var/www/html/wp-content/themes/kctennisblastteam6"
+          fi
+
+          if [ -z "$TARGET_PATH" ]; then
+            echo "Could not determine WordPress themes path on remote host."
+            echo "Set PRODUCTION_THEME_PATH secret, e.g. /opt/bitnami/wordpress/wp-content/themes/kctennisblastteam6"
+            exit 1
+          fi
+
+          echo "TARGET_PATH=$TARGET_PATH" >> "$GITHUB_ENV"
+          echo "Using TARGET_PATH=$TARGET_PATH"
+
+      - name: Ensure remote theme directory exists
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" "mkdir -p '$TARGET_PATH' || sudo mkdir -p '$TARGET_PATH'"
+
+      - name: Deploy theme files to production
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+          rsync -az --delete \
+            -e "ssh -p $PORT" \
+            ./wp-content/themes/kctennisblastteam6/ \
+            "$LIGHTSAIL_USER@$LIGHTSAIL_HOST:$TARGET_PATH/" \
+          || rsync -az --delete \
+            --rsync-path="sudo rsync" \
+            -e "ssh -p $PORT" \
+            ./wp-content/themes/kctennisblastteam6/ \
+            "$LIGHTSAIL_USER@$LIGHTSAIL_HOST:$TARGET_PATH/"
+
+      - name: Verify deployed theme on remote
+        run: |
+          PORT="${LIGHTSAIL_PORT:-22}"
+          PORT="${PORT//$'\r'/}"
+
+          if ! [[ "$PORT" =~ ^[0-9]+$ ]]; then
+            echo "Invalid PRODUCTION_LIGHTSAIL_PORT secret: '$PORT'"
+            exit 1
+          fi
+
+          ssh -p "$PORT" "$LIGHTSAIL_USER@$LIGHTSAIL_HOST" 'bash -s' -- "$TARGET_PATH" <<'EOF'
+          set -e
+          TARGET_PATH="$1"
+
+          test -f "$TARGET_PATH/style.css"
+          echo "Theme style.css found:"
+          ls -la "$TARGET_PATH/style.css"
+          echo "Theme header:"
+          head -n 20 "$TARGET_PATH/style.css" | sed -n '/Theme Name/p'
+          echo "Available themes directory:"
+          ls -la "$(dirname "$TARGET_PATH")"
+          EOF
