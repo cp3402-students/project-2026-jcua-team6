@@ -719,7 +719,7 @@ textarea {
 }
 
 .main-navigation ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 3px 3px var(--secondary-color);
 	float: left;
 	position: absolute;
 	top: 100%;
@@ -819,18 +819,11 @@ textarea {
 
 .post,
 .page {
-	margin: 0 0 1.5em;
-	background-color: #ffffff;
-	border: 1px solid rgba(0, 77, 51, 0.08);
-	border-radius: 24px;
-	box-shadow: 0 14px 40px rgba(0, 0, 0, 0.05);
-	padding: 2rem;
-	transition: box-shadow 0.25s ease, transform 0.25s ease;
+	margin: auto;
 }
 
-.post:hover,
-.page:hover {
-	box-shadow: 0 20px 55px rgba(0, 0, 0, 0.08);
+.post:hover {
+	box-shadow: 0 20px 55px var(--secondary-color);
 	transform: translateY(-1px);
 }
 
@@ -851,22 +844,11 @@ textarea {
 
 /* Single post and page layout */
 #page {
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-areas:
-		"site-header"
-		"site-main"
-		"widget-area"
-		"site-footer";
-	gap: 0;
-}
-
-#masthead {
-	grid-area: site-header;
+	display: flex;
+	flex-direction: column;
 }
 
 #primary {
-	grid-area: site-main;
 	width: 100%;
 	max-width: 1100px;
 	margin: 0 auto;
@@ -874,15 +856,10 @@ textarea {
 }
 
 .widget-area {
-	grid-area: widget-area;
 	width: 100%;
 	max-width: 320px;
 	margin: 0 auto;
 	padding: 1.5rem 1.25rem 0;
-}
-
-.site-footer {
-	grid-area: site-footer;
 }
 
 article {
@@ -911,15 +888,6 @@ article {
 }
 
 @media screen and (min-width: 960px) {
-	#page {
-		grid-template-columns: minmax(0, 1fr) 320px;
-		grid-template-areas:
-			"site-header site-header"
-			"site-main widget-area"
-			"site-footer site-footer";
-		column-gap: 2rem;
-	}
-
 	#primary {
 		padding-right: 0;
 		padding-left: 0;
@@ -933,18 +901,16 @@ article {
 
 /* Custom post card layout */
 .post-card {
-	background-color: #ffffff;
-	border: 1px solid rgba(33, 97, 58, 0.12);
-	border-radius: 26px;
-	box-shadow: 0 24px 60px rgba(41, 60, 58, 0.08);
-	overflow: hidden;
-	margin-bottom: 2.5rem;
-	transition: transform 0.25s ease, box-shadow 0.25s ease;
+	background: var(--primary-color);
+	border-radius: 16px;
+	padding: 20px;
+	box-shadow: 0 8px 24px var(--secondary-color);
+	transition: all 0.3s ease;
 }
 
 .post-card:hover {
-	transform: translateY(-4px);
-	box-shadow: 0 34px 70px rgba(41, 60, 58, 0.12);
+	transform: translateY(-6px);
+	box-shadow: 0 16px 40px lighten(--primary-color, 12%)
 }
 
 .post-card-media {
@@ -975,7 +941,7 @@ article {
 	font-size: clamp(2.4rem, 3vw, 3.4rem);
 	line-height: 1.04;
 	margin: 0 0 0.9rem;
-	color: #122d1f;
+	color: var(--secondary-color);
 }
 
 .post-card .entry-title a {
@@ -997,7 +963,7 @@ article {
 	padding: 0.45rem 0.95rem;
 	border-radius: 999px;
 	background-color: rgba(0, 77, 51, 0.08);
-	color: #054c31;
+	color: var(--secondary-color);
 	font-size: 0.9rem;
 	font-weight: 600;
 }
@@ -1007,7 +973,7 @@ article {
 	flex-wrap: wrap;
 	gap: 0.9rem;
 	font-size: 0.95rem;
-	color: #4d6e5f;
+	color: var(--secondary-color);
 }
 
 .post-card .entry-meta .posted-on,
@@ -1020,7 +986,7 @@ article {
 .post-card .entry-content {
 	font-size: 1.05rem;
 	line-height: 1.85;
-	color: #303a33;
+	color: var(--secondary-color);
 }
 
 .post-card .entry-content p {
@@ -1032,20 +998,20 @@ article {
 .post-card .entry-content h4 {
 	margin-top: 2rem;
 	margin-bottom: 1rem;
-	color: #112a1c;
+	color: var(--secondary-color);
 }
 
 .post-card .entry-content a {
-	color: #0d5b35;
+	color: var(--link-secondary-color);
 	text-decoration: underline;
 }
 
 .post-card .entry-footer {
-	border-top: 1px solid rgba(38, 76, 57, 0.12);
+	border-top: 1px solid var(--secondary-color);
 	margin-top: 2rem;
 	padding-top: 1.35rem;
 	font-size: 0.95rem;
-	color: #546a60;
+	color: var(--secondary-color);
 }
 
 @media (max-width: 720px) {
