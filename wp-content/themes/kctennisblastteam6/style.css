@@ -56,7 +56,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	--secondary-color: #000000;
 	--button-color: #c2ff00;
 	--button-hover-color: #034a1f;
-	--link-color: #c2ff00;
+	--link-color: #ffffff;
 	--link-secondary-color: #000000;
 	--link-visited-color: #034a1f;
 	--link-hover-color: #034a1f;
@@ -73,17 +73,13 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # Generic
 --------------------------------------------------------------*/
-body{
-	background-color: #111;
-}
 
 h1{
-	color: var(--link-color);
+	color: var(--primary-color);
 }
 
 header {
 	background-color: var(--secondary-color);
-
 }
 
 .site-title {
@@ -440,7 +436,6 @@ html {
 
 /* Typography
 --------------------------------------------- */
-body,
 button,
 input,
 select,
@@ -517,7 +512,7 @@ big {
 /* Elements
 --------------------------------------------- */
 body {
-	background: #ffffff;
+	background: var(--primary-color);
 }
 
 hr {
@@ -577,12 +572,9 @@ table {
 
 /* Links
 --------------------------------------------- */
-a {
-	color: #4169e1;
-}
 
 a:visited {
-	color: var(--link-color);
+	color: var(--link-visited-color);
 }
 
 a:hover,
@@ -684,6 +676,27 @@ textarea {
 	width: 100%;
 }
 
+button,
+input[type="button"],
+input[type="submit"],
+.wp-block-button__link {
+	background-color: var(--button-color);
+	color: var(--secondary-color);
+	transition: all 0.3s ease;
+	border: none;
+}
+
+/* Hover effect */
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+.wp-block-button__link:hover {
+	background-color: var(--button-hover-color);
+	color: var(--primary-color);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px var(--secondary-color);
+}
+
 /*--------------------------------------------------------------
 # Layouts
 --------------------------------------------------------------*/
@@ -694,9 +707,11 @@ textarea {
 
 /* Navigation
 --------------------------------------------- */
-.menu-button {
+
+
+.menu-button{
 	display: block;
-	color: var(--primary-color);
+	color: var(--link-secondary-color);
 	background-color: var(--button-color);
 	border: none;
 	padding: 0.5em 1em;
@@ -704,6 +719,22 @@ textarea {
 	font-family: var(--font-button);
 }
 
+
+/* Menu link colours */
+.main-navigation a {
+	color: var(--link-color);
+	font-family: var(--font-button);
+	transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.main-navigation a:visited {
+	color: var(--link-color);
+}
+
+.main-navigation a:hover,
+.main-navigation a:focus {
+	color: var(--link-hover-color);
+}
 
 .main-navigation {
 	display: block;
@@ -716,6 +747,7 @@ textarea {
 	margin: 0;
 	padding-left: 0;
 	padding-top: 1em;
+
 }
 
 .main-navigation ul ul {
@@ -735,6 +767,7 @@ textarea {
 
 .main-navigation ul ul li:hover > ul,
 .main-navigation ul ul li.focus > ul {
+	color : var(--link-hover-color);
 	display: block;
 	left: auto;
 }
@@ -742,11 +775,6 @@ textarea {
 .main-navigation ul ul a {
 	width: 200px;
 	padding-left: 3;
-}
-
-.main-navigation ul li:hover > ul,
-.main-navigation ul li.focus > ul {
-	left: auto;
 }
 
 .main-navigation li {
@@ -910,7 +938,7 @@ article {
 
 .post-card:hover {
 	transform: translateY(-6px);
-	box-shadow: 0 16px 40px lighten(--primary-color, 12%)
+	box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2)
 }
 
 .post-card-media {
@@ -1040,14 +1068,14 @@ article {
 .wp-block-button__link {
 	font-family: var(--font-button);
 	background-color: var(--button-color);
-	color: var(--secondary-color);
+	color: var(--link-secondary-color);
 	transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .wp-block-button__link:hover,
 .wp-block-button__link:focus {
 	background-color: var(--button-hover-color);
-	color: var(--primary-color);
+	color: var(--link-color);
 }
 
 a {
@@ -1115,7 +1143,7 @@ h2 {
 	margin-top: 0;
 }
 
-/* Comments
+/* Comments */
 .comment-content a {
 	word-wrap: break-word;
 }
