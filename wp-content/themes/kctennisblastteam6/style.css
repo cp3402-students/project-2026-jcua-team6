@@ -927,6 +927,10 @@ input[type="submit"]:hover,
 	color: var(--link-color);
 }
 
+.footer-widget:nth-child(1) {
+	color: var(--link-secondary-color);
+}
+
 .footer-widget a,
 .footer-widget p,
 .footer-widget li {
