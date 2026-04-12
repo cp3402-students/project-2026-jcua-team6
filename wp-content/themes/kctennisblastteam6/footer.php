@@ -10,22 +10,43 @@
  */
 
 ?>
-
 	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'kctennisblastteam6' ) ); ?>">
+		<div class="footer-content">
+
+			<div class="footer-section footer-contact">
 				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'kctennisblastteam6' ), 'WordPress' );
+				if ( is_active_sidebar( 'footer-contact' ) ) {
+					dynamic_sidebar( 'footer-contact' );
+				}
 				?>
-			</a>
-			<span class="sep"> | </span>
+			</div>
+
+			<div class="footer-section footer-hours">
 				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'kctennisblastteam6' ), 'kctennisblastteam6', '<a href="http://underscores.me/">Underscores.me</a>' );
+				if ( is_active_sidebar( 'footer-hours' ) ) {
+					dynamic_sidebar( 'footer-hours' );
+				}
 				?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
+			</div>
+
+			<div class="footer-section footer-connect">
+				<?php
+				if ( is_active_sidebar( 'footer-connect' ) ) {
+					dynamic_sidebar( 'footer-connect' );
+				}
+				?>
+			</div>
+
+			<div class="footer-section footer-tagline">
+				<?php
+				if ( is_active_sidebar( 'footer-tagline' ) ) {
+					dynamic_sidebar( 'footer-tagline' );
+				}
+				?>
+			</div>
+
+		</div>
+	</footer>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

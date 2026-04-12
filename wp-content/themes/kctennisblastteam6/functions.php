@@ -120,15 +120,52 @@ add_action( 'after_setup_theme', 'kctennisblastteam6_content_width', 0 );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function kctennisblastteam6_widgets_init() {
+	// Footer Widget Areas
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'kctennisblastteam6' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'kctennisblastteam6' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
+			'name'          => esc_html__( 'Footer Contact', 'kctennisblastteam6' ),
+			'id'            => 'footer-contact',
+			'description'   => esc_html__( 'Footer contact section', 'kctennisblastteam6' ),
+			'before_widget' => '<div class="footer-widget">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="footer-heading">',
+			'after_title'   => '</h3>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Hours', 'kctennisblastteam6' ),
+			'id'            => 'footer-hours',
+			'description'   => esc_html__( 'Footer hours section', 'kctennisblastteam6' ),
+			'before_widget' => '<div class="footer-widget">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="footer-heading">',
+			'after_title'   => '</h3>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Connect', 'kctennisblastteam6' ),
+			'id'            => 'footer-connect',
+			'description'   => esc_html__( 'Footer social links', 'kctennisblastteam6' ),
+			'before_widget' => '<div class="footer-widget">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="footer-heading">',
+			'after_title'   => '</h3>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Tagline', 'kctennisblastteam6' ),
+			'id'            => 'footer-tagline',
+			'description'   => esc_html__( 'Footer tagline section', 'kctennisblastteam6' ),
+			'before_widget' => '<div class="footer-widget">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="footer-heading">',
+			'after_title'   => '</h3>',
 		)
 	);
 }
@@ -138,7 +175,8 @@ add_action( 'widgets_init', 'kctennisblastteam6_widgets_init' );
  * Enqueue scripts and styles.
  */
 function kctennisblastteam6_scripts() {
-	wp_enqueue_style( 'kctennisblastteam6-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'kctennisblastteam6-fonts', 'https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@300;400&family=Fjalla+One&family=Poppins:wght@300;400;600&display=swap', array(), null );
+	wp_enqueue_style( 'kctennisblastteam6-style', get_stylesheet_uri(), array( 'kctennisblastteam6-fonts' ), _S_VERSION );
 	wp_style_add_data( 'kctennisblastteam6-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'kctennisblastteam6-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
