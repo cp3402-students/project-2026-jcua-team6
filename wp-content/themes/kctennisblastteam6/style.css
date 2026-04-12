@@ -56,7 +56,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	--secondary-color: #000000;
 	--button-color: #c2ff00;
 	--button-hover-color: #034a1f;
-	--link-color: #ffffff;
+	--link-color: #c2ff00;
 	--link-secondary-color: #000000;
 	--link-visited-color: #034a1f;
 	--link-hover-color: #034a1f;
@@ -68,6 +68,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	--h2-font-size: 2.5em;
 	--p-font-size-large: 1.4em;
 	--h2-font-size-large: 3.6em;
+
+	--mobile-breakpoint: 600px;
+	--tablet-breakpoint: 1024px;
 }
 
 /*--------------------------------------------------------------
@@ -708,7 +711,6 @@ input[type="submit"]:hover,
 /* Navigation
 --------------------------------------------- */
 
-
 .menu-button{
 	display: block;
 	color: var(--link-secondary-color);
@@ -721,10 +723,20 @@ input[type="submit"]:hover,
 
 
 /* Menu link colours */
-.main-navigation a {
+.main-navigation a  {
 	color: var(--link-color);
 	font-family: var(--font-button);
 	transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.main-navigation > div > ul li:last-child a {
+	color: var(--link-secondary-color);
+}
+
+.main-navigation > a {
+	width: 50%;
+	margin: 0 auto;
+	float: inline-start;
 }
 
 .main-navigation a:visited {
@@ -737,8 +749,9 @@ input[type="submit"]:hover,
 }
 
 .main-navigation {
-	display: block;
+	display: block !important;
 	width: auto;
+
 }
 
 .main-navigation ul {
@@ -747,7 +760,12 @@ input[type="submit"]:hover,
 	margin: 0;
 	padding-left: 0;
 	padding-top: 1em;
+}
 
+.menu-menu-1-container {
+	width: 90%;
+	display: flex;
+	justify-content: center;
 }
 
 .main-navigation ul ul {
@@ -789,17 +807,33 @@ input[type="submit"]:hover,
 }
 
 /* Small menu. */
-.menu-toggle,
-.main-navigation.toggled ul {
+
+
+
+.menu-toggle {
 	display: block;
 	background-color: var(--link-color);
+	float: right;
 }
 
-@media screen and (min-width: 37.5em) {
+.main-navigation.toggled ul {
+	display: block;
+	background-color: var(--secondary-color);
+}
+
+@media screen and (min-width: 1024px) {
 
 
 	.menu-toggle {
 		display: none;
+	}
+
+	.main-navigation > a {
+		width: 10%;
+	}
+
+	.menu-menu-1-container {
+		justify-content: right;
 	}
 
 	.main-navigation > div > ul,
@@ -939,7 +973,7 @@ article {
 	word-break: break-word;
 }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 1024px) {
 	#primary {
 		padding-right: 0;
 		padding-left: 0;
@@ -1124,7 +1158,7 @@ h2 {
 	font-size: var(--h2-font-size);
 }
 
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 1024px) {
 	h2 {
 		font-size: var(--h2-font-size-large);
 	}
