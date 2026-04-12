@@ -1163,15 +1163,15 @@ h2 {
 }
 
 
-/* .is-layout-flex > :is(*, div) {
+.is-layout-flex > :is(*, div) {
     margin: 0.75rem !important;
-} */
+}
 
 .has-black-background-color {
-	width: 100vw;
-	max-width: 100vw;
-	margin-left: calc(50% - 50vw);
-	margin-right: calc(50% - 50vw);
+	width: 100vw !important;
+	max-width: 100vw !important;
+	margin-left: calc(50% - 50vw) !important;
+	margin-right: calc(50% - 50vw) !important;
 }
 
 .has-black-background-color > * {
@@ -1185,11 +1185,14 @@ h2 {
 }
 
 .wp-block-post {
-	margin-bottom: 5rem;
+	margin-bottom: 5rem !important;
 }
 
 .wp-block-post-title {
 	margin-top: 0;
+	margin-left: 1em;
+	font: var(--font-body);
+	font-size: var(--p-font-size-large);
 }
 
 /* Comments */
