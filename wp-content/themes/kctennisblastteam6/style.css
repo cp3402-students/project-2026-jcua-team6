@@ -924,6 +924,7 @@ input[type="submit"]:hover,
 	max-width: 260px;
 	margin: 0 auto;
 	margin-bottom: 1em;
+	color: var(--link-color);
 }
 
 .footer-widget a,
