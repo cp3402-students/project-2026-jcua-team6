@@ -1121,6 +1121,9 @@ article {
 
 .wp-block-buttons{
 	margin: 1.5em !important;
+}
+
+.wp-block-buttons .wp-block-button__link {
 	color: var(--link-secondary-color);
 }
 
