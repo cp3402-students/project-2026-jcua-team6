@@ -1111,10 +1111,6 @@ article > * a {
 	color: var(--link-secondary-color);
 }
 
-article > * a {
-	color: var(--link-secondary-color);
-}
-
 p {
 	font-family: var(--font-body);
 	font-weight: 300;
