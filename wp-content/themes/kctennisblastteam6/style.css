@@ -1121,12 +1121,13 @@ article {
 
 .wp-block-buttons{
 	margin: 1.5em !important;
+	color: var(--link-secondary-color);
 }
 
 .wp-block-button__link {
 	font-family: var(--font-button);
 	background-color: var(--button-color);
-	color: var(--link-secondary-color) !important;
+	color: var(--link-secondary-color);
 	transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
