@@ -927,7 +927,7 @@ input[type="submit"]:hover,
 	color: var(--link-color);
 }
 
-.footer-widget:nth-child(1) {
+.footer-section:nth-child(1) {
 	color: var(--link-secondary-color);
 }
 
