@@ -884,11 +884,6 @@ input[type="submit"]:hover,
 	margin: auto;
 }
 
-.post:hover {
-	box-shadow: 0 20px 55px var(--secondary-color);
-	transform: translateY(-1px);
-}
-
 .updated:not(.published) {
 	display: none;
 }
@@ -1120,7 +1115,7 @@ article {
 }
 
 .wp-block-buttons {
-	margin: 1.5em;
+	margin: 1.5em !important;
 }
 
 .wp-block-button__link {
@@ -1149,7 +1144,7 @@ p {
 	font-family: var(--font-body);
 	font-weight: 300;
 	font-size: var(--p-font-size);
-	line-height: 2!important;
+	line-height: 2 !important;
 }
 
 h2 {
