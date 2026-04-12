@@ -890,6 +890,30 @@ input[type="submit"]:hover,
 	padding: 1.5rem 1.25rem 0;
 }
 
+.footer-widget {
+	width: 100%;
+	max-width: 260px;
+	margin: 0 auto;
+	margin-bottom: 1em;
+}
+
+.footer-widget a,
+.footer-widget p,
+.footer-widget li {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+}
+
+.footer-widget ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.footer-widget a {
+	color: var(--link-color);
+}
+
 article {
 	width: 100%;
 	max-width: 900px;
@@ -1363,10 +1387,18 @@ h2 {
 	margin: 0 auto 2em;
 	padding-bottom: 2em;
 	border-bottom: 1px solid var(--secondary-color);
+	align-items: start;
 }
 
 .footer-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	text-align: center;
+
+	/* prevents bleed */
+	min-width: 0;
+	word-break: break-word;
 }
 
 .footer-heading {

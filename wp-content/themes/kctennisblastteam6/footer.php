@@ -10,44 +10,43 @@
  */
 
 ?>
-
 	<footer id="colophon" class="site-footer">
 		<div class="footer-content">
+
 			<div class="footer-section footer-contact">
-				<h3 class="footer-heading"><?php esc_html_e( 'CONTACT', 'kctennisblastteam6' ); ?></h3>
 				<?php
-				if ( have_posts() ) {
-					// Display contact information from theme options or hardcoded
-					?>
-					<ul class="footer-contact-list">
-						<li><a href="tel:+61421177764">0421 177 764</a></li>
-						<li><a href="mailto:kalyndachasetennis@outlook.com">kalyndachasetennis@outlook.com</a></li>
-						<li>47-59 Kalynda Parade, Townsville</li>
-					</ul>
-					<?php
+				if ( is_active_sidebar( 'footer-contact' ) ) {
+					dynamic_sidebar( 'footer-contact' );
 				}
 				?>
-			</div><!-- .footer-contact -->
+			</div>
 
 			<div class="footer-section footer-hours">
-				<h3 class="footer-heading"><?php esc_html_e( 'HOURS', 'kctennisblastteam6' ); ?></h3>
-				<p><?php esc_html_e( 'Court Hire Available', 'kctennisblastteam6' ); ?></p>
-				<p class="hours-emphasis">24/7</p>
-			</div><!-- .footer-hours -->
+				<?php
+				if ( is_active_sidebar( 'footer-hours' ) ) {
+					dynamic_sidebar( 'footer-hours' );
+				}
+				?>
+			</div>
 
 			<div class="footer-section footer-connect">
-				<h3 class="footer-heading"><?php esc_html_e( 'CONNECT', 'kctennisblastteam6' ); ?></h3>
-				<ul class="footer-social-links">
-					<li><a href="https://www.facebook.com/TennisBLASTKalynda" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Facebook', 'kctennisblastteam6' ); ?></a></li>
-				</ul>
-			</div><!-- .footer-connect -->
+				<?php
+				if ( is_active_sidebar( 'footer-connect' ) ) {
+					dynamic_sidebar( 'footer-connect' );
+				}
+				?>
+			</div>
 
 			<div class="footer-section footer-tagline">
-				<p class="footer-tagline-text"><?php esc_html_e( 'BELIEVE - LEARN - ACHIEVE - SUCCEED', 'kctennisblastteam6' ); ?></p>
-				<p class="footer-tagline-sub"><?php esc_html_e( 'in TENNIS!', 'kctennisblastteam6' ); ?></p>
-			</div><!-- .footer-tagline -->
-		</div><!-- .footer-content -->
-	</footer><!-- #colophon -->
+				<?php
+				if ( is_active_sidebar( 'footer-tagline' ) ) {
+					dynamic_sidebar( 'footer-tagline' );
+				}
+				?>
+			</div>
+
+		</div>
+	</footer>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
