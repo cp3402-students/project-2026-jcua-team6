@@ -937,6 +937,45 @@ input[type="submit"]:hover,
 	margin: auto;
 }
 
+.wp-block-columns.alignwide {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.5rem; /* Much smaller gap */
+}
+
+.wp-block-columns.alignwide > .wp-block-column:first-child {
+    flex-basis: 0;
+    flex-grow: 0;
+    max-width: 300px; /* Smaller image column */
+}
+
+.wp-block-columns.alignwide > .wp-block-column:last-child {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.wp-block-columns.alignwide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+@media (max-width: 900px) {
+    .wp-block-columns.alignwide {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .wp-block-columns.alignwide > .wp-block-column,
+    .wp-block-columns.alignwide > .wp-block-column:first-child,
+    .wp-block-columns.alignwide > .wp-block-column:last-child {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+}
+
 .updated:not(.published) {
 	display: none;
 }
