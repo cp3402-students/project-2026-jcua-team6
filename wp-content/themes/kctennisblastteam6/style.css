@@ -729,10 +729,25 @@ input[type="submit"]:hover,
 	color: var(--link-secondary-color);
 }
 
-.main-navigation > a {
+.main-navigation > a:not(.custom-logo-link) {
 	width: 50%;
 	margin: 0 auto;
 	float: inline-start;
+}
+
+.main-navigation > .custom-logo-link {
+	width: clamp(100px, 26vw, 140px);
+	margin: 0.5rem 1rem 0.5rem 0;
+	display: inline-flex;
+	align-items: center;
+	float: none;
+}
+
+.main-navigation > .custom-logo-link img {
+	width: 100%;
+	height: auto;
+	max-height: 72px;
+	object-fit: contain;
 }
 
 .main-navigation a:visited {
@@ -745,7 +760,9 @@ input[type="submit"]:hover,
 }
 
 .main-navigation {
-	display: block !important;
+	display: flex !important;
+	align-items: center;
+	justify-content: space-between;
 	width: auto;
 
 }
@@ -809,7 +826,9 @@ input[type="submit"]:hover,
 .menu-toggle {
 	display: block;
 	background-color: var(--link-color);
-	float: right;
+	float: none;
+	margin-left: auto;
+	align-self: center;
 }
 
 .main-navigation.toggled ul {
@@ -824,8 +843,17 @@ input[type="submit"]:hover,
 		display: none;
 	}
 
-	.main-navigation > a {
+	.main-navigation > a:not(.custom-logo-link) {
 		width: 10%;
+	}
+
+	.main-navigation > .custom-logo-link {
+		width: 140px;
+		margin: 0.25rem 1rem 0.25rem 0;
+	}
+
+	.main-navigation > .custom-logo-link img {
+		max-height: 64px;
 	}
 
 	.main-navigation > div {
