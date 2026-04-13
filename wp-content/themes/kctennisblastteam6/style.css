@@ -976,6 +976,18 @@ input[type="submit"]:hover,
     }
 }
 
+.wp-block-columns.alignwide img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.wp-block-columns.alignwide figure {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
 .updated:not(.published) {
 	display: none;
 }
