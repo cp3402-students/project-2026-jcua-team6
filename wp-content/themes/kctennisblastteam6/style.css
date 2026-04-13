@@ -527,7 +527,7 @@ ol {
 	margin: 0 0 1.5em 3em;
 } */
 
-main ul {
+.wp-block-list {
 	list-style: disc;
 	font-size: var(--p-font-size);
 	font-weight: 300;
@@ -866,7 +866,7 @@ input[type="submit"]:hover,
 		padding: 0.5rem 2rem;
 	}
 
-	main ul {
+	.wp-block-list {
 		font-size: var(--p-font-size-large);
 	}
 
