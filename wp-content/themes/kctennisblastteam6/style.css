@@ -529,6 +529,7 @@ ol {
 
 ul {
 	list-style: disc;
+	font-size: var(--p-font-size);
 }
 
 ol {
@@ -863,6 +864,10 @@ input[type="submit"]:hover,
 		padding: 0.5rem 2rem;
 	}
 
+	ul {
+		font-size: var(--p-font-size-large);
+	}
+
 
 	.menu-toggle {
 		display: none;
@@ -1189,6 +1194,10 @@ article {
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	color: var(--secondary-color);
+}
+
+h3 {
+	font-size: 1.75em;
 }
 
 .post-card .entry-content a {
