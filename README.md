@@ -1,18 +1,16 @@
 # README
 
-# ? — Custom WordPress Theme
+# kctennisblastteam6 — Custom WordPress Theme
 
 Developed by Corey Camilleri, Cole Jacobsen, Dylan Ryder and Salvin George as members of JCU Group 6 for the subject CP3402.
 
 ## Overview
 
-This repository contains the custom WordPress theme [**?**](#), developed from the [Underscores Starter Theme](https://underscores.me/) starter theme as part of the CP3402 project to create a simple website for the company [KC Tennis Blast](https://www.kctennisblast.com.au/) using provided raw content.
+This repository contains the custom WordPress theme [kctennisblastteam6](https://github.com/cp3402-students/project-2026-jcua-team6/tree/main/wp-content/themes/kctennisblastteam6), developed from the [Underscores Starter Theme](https://underscores.me/) starter theme as part of the CP3402 project to create a simple website for the company [KC Tennis Blast](https://www.kctennisblast.com.au/) using provided raw content.
 
-The theme uses several shades and hues of gentle greens to present a clean and modern aesthetic suited to an inviting learning environment. Its clarity, structure, and content are designed for parents of:
+The Theme Uses several shades of <span style="color:c2ff00"> Tennis Ball Green </span> to help reinforce the energetic and active identity of Tennis Blast at Kalynda Chase Regional Tennis Centre. This colour palette reflects the sport focus and is consistently applied across key visual elements such as headings, call-to-action buttons, highlights, and section dividers.
 
-- <insert>
-
-The theme uses extra spacing, centre-aligned elements, and subtle highlights to draw attention to important content. Interactive elements are kept minimal to avoid distracting users from the main goal of registering new students.
+Interactive elements are intentionally kept minimal and purpose-driven, primarily focusing on key actions such as “`HIRE A COURT NOW`”, class enrolments, and contact prompts. This ensures users are not distracted from the main goal of the site: **encouraging new student registrations**, increasing court bookings, and promoting participation in coaching programs across all age groups.
 
 For more information on how the theme works, please visit the [**Theme Developer Guide**](https://github.com/cp3402-students/project-2026-jcua-team6/blob/main/theme.md).
 
@@ -34,10 +32,4 @@ For more information on how the theme works, please visit the [**Theme Developer
 - [Theme Developer Guide](https://github.com/cp3402-students/project-2026-jcua-team6/blob/main/theme.md)
 - [Site Management Guide](https://github.com/cp3402-students/project-2026-jcua-team6/blob/main/site.md)
 
-## Features
 
-## ? Showcase (by Corey Camilleri)
-
-**Note:** This is **not** the group presentation. It is an additional showcase video demonstrating that the Viridian theme was successfully imported into a fresh WordPress site. It also shows the theme’s design features and how they can be used without conflicting with custom CSS.
-
-- Watch the video

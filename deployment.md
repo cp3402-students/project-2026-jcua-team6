@@ -49,8 +49,6 @@ You may change these varables to suit your needs, it is recommended to change th
 Create `docker-compose.local.yml` in root directory if not already there. 
 
 ```yml
-version: '3.8'
-
 services:
 
   db:
@@ -61,13 +59,20 @@ services:
       MARIADB_USER: ${DB_USER}
       MARIADB_PASSWORD: ${DB_PASSWORD}
       MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'no'
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   wordpress:
     image: wordpress:php8.2-apache
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: unless-stopped
     ports:
       - "${WP_PORT}:80"
@@ -139,33 +144,43 @@ In WordPress admin, go to:
 
 Activate the theme located in `wp-content/themes/kctennisblastteam6`.
 
+# AWS / Hosting Instnace
+1. Create Instance with Wordpress install.
+2. Ensure under Security / SSH access is given to `github/worflows` ip ranges (so that Github Actions can access/clone files)
+> For this Project all security was configured to allow access already.
+
 # How changes are made and committed
 
-1. **Make changes locally**: Edit files in your local repository, such as theme files in `wp-content/themes/kctennisblastteam6/`. 
+1. **Create Feature Branch**: Make a feature branch for the proposed changes via: 
+```ssh
+git checkout <feature-branch-name> staging
+```
+
+2. **Make changes locally**: Edit files in your local repository, such as theme files in `wp-content/themes/kctennisblastteam6/`. 
 
 > ***Note:*** Changes such as posts, pages, content should be made on the live staging site and not in local development as these changes will not be pushed to the staging site via `StagingDeployment.yml` 
 
-2. **Test changes**: Run the local environment and verify functionality (see "How changes are tested" below).
+3. **Test changes**: Run the local environment and verify functionality (see "How changes are tested" below).
 
-3. **Stage changes**: Use Git to stage your modifications:
+4. **Stage changes**: Use Git to stage your modifications:
 
    ```sh
    git add .
    ```
 
-4. **Commit changes**: Create a commit with a descriptive message:
+5. **Commit changes**: Create a commit with a descriptive message:
 
    ```sh
    git commit -m "Describe your changes here"
    ```
 
-5. **Push to remote**: Push your commits to the GitHub repository:
+6. **Push to remote**: Push your commits to the GitHub repository:
 
    ```sh
    git push origin <branch-name>
    ```
 
-   For feature branches, create a pull request (PR) on GitHub for review before merging to `staging`.
+   > For feature branches, create a pull request (PR) on GitHub for review before merging to `staging`.
 
 ## How changes are tested
 
@@ -200,11 +215,11 @@ Staging deployment is automated via GitHub Actions:
    - Syncs the theme directory (`wp-content/themes/kctennisblastteam6/`) to the remote path.
    - Verifies deployment by checking for `style.css`.
 
-3. **Required secrets**: Ensure these are set in the GitHub repository's "Staging" environment:
-   - `LIGHTSAIL_HOST`
+3. **Required secrets**: Ensure these are set in the GitHub repository's "Staging" environment (`Settings -> Environments -> Staging -> Secrets`):
+   - `LIGHTSAIL_HOST` 
    - `LIGHTSAIL_USER`
-   - `LIGHTSAIL_PORT` (optional, defaults to 22)
    - `LIGHTSAIL_SSH_KEY`
+   - `LIGHTSAIL_PORT` (optional, defaults to 22)
    - `STAGING_THEME_PATH` (optional override for theme directory)
 
 > For this project these values are already preconfigured as such simple pull request / commit will trigger workflow automatically.
@@ -215,11 +230,22 @@ Staging deployment is automated via GitHub Actions:
 
 Production deployment involves creating a pull request from the `staging` branch to the `main` branch, which triggers automated deployment of the theme to the production site.
 
-1. **Create PR**: After thorough testing on staging, create a pull request from `staging` to `main` for final review.
-2. **Merge PR**: Upon merging the PR, the GitHub Actions workflow (similar to staging) deploys the theme directory (`wp-content/themes/kctennisblastteam6/`) to the production server.
-3. **Manual migration**: Database, content, plugins, and other site data are migrated manually or using plugins/tools like WP Migrate DB. This ensures data integrity and allows for selective updates.
+### Production Environment
+1. Ensure that Github Secrets has the following secrets inside the `production` environment.
+   - `PRODUCTION_LIGHTSAIL_HOST`
+   - `PRODUCTION_LIGHTSAIL_USER`
+   - `PRODUCTION_LIGHTSAIL_SSH_KEY`
+   - `PRODUCTION_LIGHTSAIL_PORT` (optional, defaults to 22)
+   - `PRODUCTION_STAGING_THEME_PATH` (optional override for theme directory)
 
-> **Note**: Ensure production secrets (e.g., `PROD_HOST`, `PROD_USER`, etc.) are configured in the GitHub repository's "Production" environment. The workflow for `main` branch should mirror the staging deployment but target the production server.
+2. **Create PR**: After thorough testing on staging, create a pull request from `staging` to `main` for final review.
+
+3. **Merge PR**: Upon merging the PR, the GitHub Actions workflow (similar to staging) deploys the theme directory (`wp-content/themes/kctennisblastteam6/`) to the production server.
+
+4. **Access staging**: Once deployed, access the staging site via the configured [URL](http://3.25.53.102/wp-admin).
+
+5. **Manual migration**: Database, content, plugins, and other site data are migrated manually or using plugins/tools like WP Migrate DB. This ensures data integrity and allows for selective updates.
+
 
 # Integration of project management and communication tools
 
