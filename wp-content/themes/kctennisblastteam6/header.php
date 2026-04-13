@@ -28,7 +28,6 @@
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
 			<?php
-			the_custom_logo();
 			if ( is_front_page() && is_home() ) :
 				?>
 				<!-- <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1> -->
@@ -45,9 +44,13 @@
 			<?php endif; ?>
 		</div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation" style="display: flex; align-items: left;">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link" rel="home"><img width="50" height="50" src="/wp-content/uploads/2026/04/Logo_Cropped.png" class="custom-logo" alt="TENNIS BLAST" decoding="async"></a>
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'kctennisblastteam6' ); ?></button>
+		<nav id="site-navigation" class="main-navigation">
+			<?php if ( has_custom_logo() ) : ?>
+				<?php echo get_custom_logo(); ?>
+			<?php else : ?>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link" rel="home"><?php bloginfo( 'name' ); ?></a>
+			<?php endif; ?>
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( '☰', 'kctennisblastteam6' ); ?></button>
 			<?php
 			wp_nav_menu(
 				array(

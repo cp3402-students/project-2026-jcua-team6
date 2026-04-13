@@ -91,10 +91,7 @@ header {
 
 main {
 	background-color: var(--primary-color);
-}
-
-.entry-title {
-	display: none;
+	font-family: var(--font-body);
 }
 
 /* Normalize
@@ -733,10 +730,25 @@ input[type="submit"]:hover,
 	color: var(--link-secondary-color);
 }
 
-.main-navigation > a {
+.main-navigation > a:not(.custom-logo-link) {
 	width: 50%;
 	margin: 0 auto;
 	float: inline-start;
+}
+
+.main-navigation > .custom-logo-link {
+	width: clamp(100px, 26vw, 140px);
+	margin: 0.5rem 1rem 0.5rem 0;
+	display: inline-flex;
+	align-items: center;
+	float: none;
+}
+
+.main-navigation > .custom-logo-link img {
+	width: 100%;
+	height: auto;
+	max-height: 72px;
+	object-fit: contain;
 }
 
 .main-navigation a:visited {
@@ -749,7 +761,12 @@ input[type="submit"]:hover,
 }
 
 .main-navigation {
-	display: block !important;
+	display: flex !important;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	padding: 0.5rem 1rem;
 	width: auto;
 
 }
@@ -763,9 +780,17 @@ input[type="submit"]:hover,
 }
 
 .main-navigation > div {
-	width: 90%;
-	display: flex;
-	justify-content: center;
+	width: 100%;
+	order: 3;
+	display: block;
+}
+
+.main-navigation > div > ul,
+#primary-menu {
+	width: 100%;
+	margin: 0;
+	padding-top: 0.75rem;
+	padding-left: 0.5rem;
 }
 
 .main-navigation ul ul {
@@ -792,7 +817,7 @@ input[type="submit"]:hover,
 
 .main-navigation ul ul a {
 	width: 200px;
-	padding-left: 3;
+	padding-left: 0.75rem;
 }
 
 .main-navigation li {
@@ -802,7 +827,7 @@ input[type="submit"]:hover,
 .main-navigation a {
 	display: block;
 	text-decoration: none;
-	margin: 0, auto;
+	margin: 0;
 	padding: 0.5em 1em;
 }
 
@@ -813,7 +838,10 @@ input[type="submit"]:hover,
 .menu-toggle {
 	display: block;
 	background-color: var(--link-color);
-	float: right;
+	float: none;
+	margin-left: auto;
+	margin-right: 0.5rem;
+	align-self: center;
 }
 
 .main-navigation.toggled ul {
@@ -821,18 +849,43 @@ input[type="submit"]:hover,
 	background-color: var(--secondary-color);
 }
 
+.main-navigation.toggled > div > ul,
+.main-navigation.toggled #primary-menu {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.5rem;
+}
+
 @media screen and (min-width: 1024px) {
+	.main-navigation {
+		flex-wrap: nowrap;
+		padding: 0.5rem 2rem;
+	}
 
 
 	.menu-toggle {
 		display: none;
+		margin-right: 0;
 	}
 
-	.main-navigation > a {
+	.main-navigation > a:not(.custom-logo-link) {
 		width: 10%;
 	}
 
+	.main-navigation > .custom-logo-link {
+		width: 140px;
+		margin: 0.25rem 1rem 0.25rem 0;
+	}
+
+	.main-navigation > .custom-logo-link img {
+		max-height: 64px;
+	}
+
 	.main-navigation > div {
+		width: auto;
+		order: initial;
+		display: flex;
 		justify-content: right;
 	}
 
