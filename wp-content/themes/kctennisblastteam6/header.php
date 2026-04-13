@@ -50,7 +50,7 @@
 			<?php else : ?>
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link" rel="home"><?php bloginfo( 'name' ); ?></a>
 			<?php endif; ?>
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'kctennisblastteam6' ); ?></button>
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( '☰', 'kctennisblastteam6' ); ?></button>
 			<?php
 			wp_nav_menu(
 				array(
