@@ -42,13 +42,6 @@ Booking System (3rd party – DO NOT CHANGE SYSTEM):
 - Only update links/buttons on site if needed
 - All bookings (classes, hire, free trial) should link out to this system
 
-Backup Plugin (UpdraftPlus):
-- Go to Settings → UpdraftPlus Backups
-- Click Backup Now before making major changes
-- Ensure both Database and Files are selected
-- Check existing backups in the list below
-- Download backup or confirm it is stored remotely (e.g. Google Drive)
-
 ---
 
 ## Anything specific to this site's organisation
