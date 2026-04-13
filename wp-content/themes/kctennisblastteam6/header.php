@@ -45,8 +45,12 @@
 			<?php endif; ?>
 		</div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation" style="display: flex; align-items: left;">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link" rel="home"><img width="50" height="50" src="/wp-content/uploads/2026/04/Logo_Cropped.png" class="custom-logo" alt="TENNIS BLAST" decoding="async"></a>
+		<nav id="site-navigation" class="main-navigation">
+			<?php if ( has_custom_logo() ) : ?>
+				<?php echo get_custom_logo(); ?>
+			<?php else : ?>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link" rel="home"><?php bloginfo( 'name' ); ?></a>
+			<?php endif; ?>
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'kctennisblastteam6' ); ?></button>
 			<?php
 			wp_nav_menu(
