@@ -527,8 +527,11 @@ ol {
 	margin: 0 0 1.5em 3em;
 } */
 
-ul {
+.wp-block-list {
 	list-style: disc;
+	font-size: var(--p-font-size);
+	font-weight: 300;
+	line-height: 1.5 !important;
 }
 
 ol {
@@ -863,6 +866,10 @@ input[type="submit"]:hover,
 		padding: 0.5rem 2rem;
 	}
 
+	.wp-block-list {
+		font-size: var(--p-font-size-large);
+	}
+
 
 	.menu-toggle {
 		display: none;
@@ -1189,6 +1196,10 @@ article {
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	color: var(--secondary-color);
+}
+
+h3 {
+	font-size: 1.75em;
 }
 
 .post-card .entry-content a {

@@ -29,6 +29,9 @@ All key design values are defined in `:root`, including:
 - Font sizes:
   - `--p-font-size`
   - `--h2-font-size`
+	- `p-font-size-large`
+	- `h2-font-size-large`
+
 
 This allows consistent styling and quick global updates.
 
