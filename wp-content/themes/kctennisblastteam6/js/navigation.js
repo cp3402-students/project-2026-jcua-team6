@@ -31,6 +31,13 @@
 		menu.classList.add( 'nav-menu' );
 	}
 
+	const desktopMediaQuery = window.matchMedia( '(min-width: 1024px)' );
+
+	function closeMobileMenuState() {
+		siteNavigation.classList.remove( 'toggled' );
+		button.setAttribute( 'aria-expanded', 'false' );
+	}
+
 	// Toggle the .toggled class and the aria-expanded value each time the button is clicked.
 	button.addEventListener( 'click', function() {
 		siteNavigation.classList.toggle( 'toggled' );
@@ -47,10 +54,23 @@
 		const isClickInside = siteNavigation.contains( event.target );
 
 		if ( ! isClickInside ) {
-			siteNavigation.classList.remove( 'toggled' );
-			button.setAttribute( 'aria-expanded', 'false' );
+			closeMobileMenuState();
 		}
 	} );
+
+	function handleViewportChange( mediaQueryEvent ) {
+		if ( mediaQueryEvent.matches ) {
+			closeMobileMenuState();
+		}
+	}
+
+	handleViewportChange( desktopMediaQuery );
+
+	if ( typeof desktopMediaQuery.addEventListener === 'function' ) {
+		desktopMediaQuery.addEventListener( 'change', handleViewportChange );
+	} else {
+		desktopMediaQuery.addListener( handleViewportChange );
+	}
 
 	// Get all the link elements within the menu.
 	const links = menu.getElementsByTagName( 'a' );
