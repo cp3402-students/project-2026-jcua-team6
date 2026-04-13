@@ -19,7 +19,7 @@ For more information on how the theme works, please visit the [**Theme Developer
 ## Members (A–Z)
 
 - **Corey Camilleri** | [LinkedIn Profile](#) | [GitHub Profile](#)
-- **Cole Jacobsen** | [LinkedIn Profile](#) | [GitHub Profile](#)
+- **Cole Jacobsen** | [LinkedIn Profile](https://www.linkedin.com/in/cole-jacobsen05/) | [GitHub Profile](https://github.com/ColeJacobsen)
 - **Dylan Ryder** | [LinkedIn Profile](#) | [GitHub Profile](#)
 - **Salvin George** | [LinkedIn Profile](https://www.linkedin.com/in/salvin-george-490019353/) | [GitHub Profile](https://github.com/Salvin-George)
 
