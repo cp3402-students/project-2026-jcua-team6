@@ -763,6 +763,9 @@ input[type="submit"]:hover,
 	display: flex !important;
 	align-items: center;
 	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	padding: 0.5rem 1rem;
 	width: auto;
 
 }
@@ -776,9 +779,17 @@ input[type="submit"]:hover,
 }
 
 .main-navigation > div {
-	width: 90%;
-	display: flex;
-	justify-content: center;
+	width: 100%;
+	order: 3;
+	display: block;
+}
+
+.main-navigation > div > ul,
+#primary-menu {
+	width: 100%;
+	margin: 0;
+	padding-top: 0.75rem;
+	padding-left: 0.5rem;
 }
 
 .main-navigation ul ul {
@@ -805,7 +816,7 @@ input[type="submit"]:hover,
 
 .main-navigation ul ul a {
 	width: 200px;
-	padding-left: 3;
+	padding-left: 0.75rem;
 }
 
 .main-navigation li {
@@ -815,7 +826,7 @@ input[type="submit"]:hover,
 .main-navigation a {
 	display: block;
 	text-decoration: none;
-	margin: 0, auto;
+	margin: 0;
 	padding: 0.5em 1em;
 }
 
@@ -828,6 +839,7 @@ input[type="submit"]:hover,
 	background-color: var(--link-color);
 	float: none;
 	margin-left: auto;
+	margin-right: 0.5rem;
 	align-self: center;
 }
 
@@ -836,11 +848,24 @@ input[type="submit"]:hover,
 	background-color: var(--secondary-color);
 }
 
+.main-navigation.toggled > div > ul,
+.main-navigation.toggled #primary-menu {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.5rem;
+}
+
 @media screen and (min-width: 1024px) {
+	.main-navigation {
+		flex-wrap: nowrap;
+		padding: 0.5rem 2rem;
+	}
 
 
 	.menu-toggle {
 		display: none;
+		margin-right: 0;
 	}
 
 	.main-navigation > a:not(.custom-logo-link) {
@@ -857,6 +882,9 @@ input[type="submit"]:hover,
 	}
 
 	.main-navigation > div {
+		width: auto;
+		order: initial;
+		display: flex;
 		justify-content: right;
 	}
 
