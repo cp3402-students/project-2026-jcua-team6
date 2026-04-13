@@ -527,7 +527,7 @@ ol {
 	margin: 0 0 1.5em 3em;
 } */
 
-ul {
+main ul {
 	list-style: disc;
 	font-size: var(--p-font-size);
 }
@@ -864,7 +864,7 @@ input[type="submit"]:hover,
 		padding: 0.5rem 2rem;
 	}
 
-	ul {
+	main ul {
 		font-size: var(--p-font-size-large);
 	}
 
