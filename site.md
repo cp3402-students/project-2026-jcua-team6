@@ -43,6 +43,11 @@ Booking System (3rd party – DO NOT CHANGE SYSTEM):
 - Only update links/buttons on site if needed
 - All bookings (classes, hire, free trial) should link out to this system
 
+### Calender System
+Uses SugarCalenderevents plugin to allow for easy to use booking and rsvp for events / functions.
+- There is a inbuilt editor and customization via `sidebar -> Events`
+- Some features are paid and require a subscription.
+
 ### Migration
 Migration is handled through Wordpress Importer and Exporter.
 
