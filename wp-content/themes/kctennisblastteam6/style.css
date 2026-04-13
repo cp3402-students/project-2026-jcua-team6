@@ -93,10 +93,6 @@ main {
 	background-color: var(--primary-color);
 }
 
-.entry-title {
-	display: none;
-}
-
 /* Normalize
 --------------------------------------------- */
 
