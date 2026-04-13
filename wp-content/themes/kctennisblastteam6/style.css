@@ -530,6 +530,8 @@ ol {
 main ul {
 	list-style: disc;
 	font-size: var(--p-font-size);
+	font-weight: 300;
+	line-height: 1.5 !important;
 }
 
 ol {
