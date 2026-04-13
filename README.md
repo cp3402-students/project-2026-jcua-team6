@@ -18,7 +18,7 @@ For more information on how the theme works, please visit the [**Theme Developer
 
 - **Corey Camilleri** | [LinkedIn Profile](#) | [GitHub Profile](#)
 - **Cole Jacobsen** | [LinkedIn Profile](#) | [GitHub Profile](#)
-- **Dylan Ryder** | [LinkedIn Profile](#) | [GitHub Profile](#)
+- **Dylan Ryder** | [LinkedIn Profile](https://www.linkedin.com/in/dylan-ryder-80324a341/) | [GitHub Profile](https://github.com/dylanryder708)
 - **Salvin George** | [LinkedIn Profile](https://www.linkedin.com/in/salvin-george-490019353/) | [GitHub Profile](https://github.com/Salvin-George)
 
 ## Live Links
