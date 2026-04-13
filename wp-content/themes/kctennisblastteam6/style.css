@@ -91,6 +91,7 @@ header {
 
 main {
 	background-color: var(--primary-color);
+	font-family: var(--font-body);
 }
 
 /* Normalize
