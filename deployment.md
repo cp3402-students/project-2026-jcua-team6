@@ -144,16 +144,16 @@ In WordPress admin, go to:
 
 Activate the theme located in `wp-content/themes/kctennisblastteam6`.
 
-# AWS / Hosting Instnace
+# AWS / Hosting Instance
 1. Create Instance with Wordpress install.
 2. Ensure under Security / SSH access is given to `github/worflows` ip ranges (so that Github Actions can access/clone files)
-> For this Project all security was configured to allow access already.
+> For this project all security was configured to allow access already.
 
 # How changes are made and committed
 
 1. **Create Feature Branch**: Make a feature branch for the proposed changes via: 
 ```ssh
-git checkout <feature-branch-name> staging
+git checkout -b <feature-branch-name> staging
 ```
 
 2. **Make changes locally**: Edit files in your local repository, such as theme files in `wp-content/themes/kctennisblastteam6/`. 
@@ -250,7 +250,7 @@ Production deployment involves creating a pull request from the `staging` branch
 # Integration of project management and communication tools
 
 - **GitHub**: Use Github pull requests for code reviews and merges.
-    - **Pull Requests**: All changes should go through PRs for review. Use labels and assignees for organization.
+    - **Pull Requests**: All changes should go through PRs for review. Use labels and assignees for organisation.
 - **Communication**: Use Discord (etc.) for team communication. Reference issues in commits/PRs with `#issue-number`.
 - **Notifications**: Enable GitHub notifications / Trello for PR reviews and issue updates to stay informed.
 
