@@ -56,7 +56,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	--secondary-color: #000000;
 	--button-color: #c2ff00;
 	--button-hover-color: #034a1f;
-	--link-color: #ff0000;
+	--link-color: #c2ff00;
 	--link-secondary-color: #000000;
 	--link-visited-color: #034a1f;
 	--link-hover-color: #034a1f;
@@ -91,10 +91,7 @@ header {
 
 main {
 	background-color: var(--primary-color);
-}
-
-.entry-title {
-	display: none;
+	font-family: var(--font-body);
 }
 
 /* Normalize
@@ -525,10 +522,10 @@ hr {
 	margin-bottom: 1.5em;
 }
 
-ul,
+/* ul,
 ol {
 	margin: 0 0 1.5em 3em;
-}
+} */
 
 ul {
 	list-style: disc;
@@ -733,10 +730,25 @@ input[type="submit"]:hover,
 	color: var(--link-secondary-color);
 }
 
-.main-navigation > a {
+.main-navigation > a:not(.custom-logo-link) {
 	width: 50%;
 	margin: 0 auto;
 	float: inline-start;
+}
+
+.main-navigation > .custom-logo-link {
+	width: clamp(100px, 26vw, 140px);
+	margin: 0.5rem 1rem 0.5rem 0;
+	display: inline-flex;
+	align-items: center;
+	float: none;
+}
+
+.main-navigation > .custom-logo-link img {
+	width: 100%;
+	height: auto;
+	max-height: 72px;
+	object-fit: contain;
 }
 
 .main-navigation a:visited {
@@ -749,7 +761,12 @@ input[type="submit"]:hover,
 }
 
 .main-navigation {
-	display: block !important;
+	display: flex !important;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	padding: 0.5rem 1rem;
 	width: auto;
 
 }
@@ -763,9 +780,17 @@ input[type="submit"]:hover,
 }
 
 .main-navigation > div {
-	width: 90%;
-	display: flex;
-	justify-content: center;
+	width: 100%;
+	order: 3;
+	display: block;
+}
+
+.main-navigation > div > ul,
+#primary-menu {
+	width: 100%;
+	margin: 0;
+	padding-top: 0.75rem;
+	padding-left: 0.5rem;
 }
 
 .main-navigation ul ul {
@@ -792,7 +817,7 @@ input[type="submit"]:hover,
 
 .main-navigation ul ul a {
 	width: 200px;
-	padding-left: 3;
+	padding-left: 0.75rem;
 }
 
 .main-navigation li {
@@ -802,7 +827,7 @@ input[type="submit"]:hover,
 .main-navigation a {
 	display: block;
 	text-decoration: none;
-	margin: 0, auto;
+	margin: 0;
 	padding: 0.5em 1em;
 }
 
@@ -813,7 +838,10 @@ input[type="submit"]:hover,
 .menu-toggle {
 	display: block;
 	background-color: var(--link-color);
-	float: right;
+	float: none;
+	margin-left: auto;
+	margin-right: 0.5rem;
+	align-self: center;
 }
 
 .main-navigation.toggled ul {
@@ -821,18 +849,43 @@ input[type="submit"]:hover,
 	background-color: var(--secondary-color);
 }
 
+.main-navigation.toggled > div > ul,
+.main-navigation.toggled #primary-menu {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.5rem;
+}
+
 @media screen and (min-width: 1024px) {
+	.main-navigation {
+		flex-wrap: nowrap;
+		padding: 0.5rem 2rem;
+	}
 
 
 	.menu-toggle {
 		display: none;
+		margin-right: 0;
 	}
 
-	.main-navigation > a {
+	.main-navigation > a:not(.custom-logo-link) {
 		width: 10%;
 	}
 
+	.main-navigation > .custom-logo-link {
+		width: 140px;
+		margin: 0.25rem 1rem 0.25rem 0;
+	}
+
+	.main-navigation > .custom-logo-link img {
+		max-height: 64px;
+	}
+
 	.main-navigation > div {
+		width: auto;
+		order: initial;
+		display: flex;
 		justify-content: right;
 	}
 
@@ -882,6 +935,57 @@ input[type="submit"]:hover,
 .post,
 .page {
 	margin: auto;
+}
+
+.wp-block-columns.alignwide {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.5rem; /* Much smaller gap */
+}
+
+.wp-block-columns.alignwide > .wp-block-column:first-child {
+    flex-basis: 0;
+    flex-grow: 0;
+    max-width: 300px; /* Smaller image column */
+}
+
+.wp-block-columns.alignwide > .wp-block-column:last-child {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.wp-block-columns.alignwide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+@media (max-width: 900px) {
+    .wp-block-columns.alignwide {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .wp-block-columns.alignwide > .wp-block-column,
+    .wp-block-columns.alignwide > .wp-block-column:first-child,
+    .wp-block-columns.alignwide > .wp-block-column:last-child {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+}
+
+.wp-block-columns.alignwide img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.wp-block-columns.alignwide figure {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
 }
 
 .updated:not(.published) {

@@ -38,44 +38,25 @@ Coaches page:
 ---
 
 ## Plugin-specific processes
+### Booking System
 Booking System (3rd party – DO NOT CHANGE SYSTEM):
 - Only update links/buttons on site if needed
 - All bookings (classes, hire, free trial) should link out to this system
 
-Backup Plugin (UpdraftPlus):
-- Go to Settings → UpdraftPlus Backups
-- Click Backup Now before making major changes
-- Ensure both Database and Files are selected
-- Check existing backups in the list below
-- Download backup or confirm it is stored remotely (e.g. Google Drive)
+### Migration
+Migration is handled through Wordpress Importer and Exporter.
 
----
+#### Exporting Site
+- Run Wordpress site exporter `Tools -> Export` which will give you a .xml File. 
+  - **Note** - Will not export Plugin Specific Settings or Plugins themselves, those will have to be downloaded and installed on host and target sites.
 
-## Anything specific to this site's organisation
-- Primary goal: Push users to booking (CTA buttons everywhere)
-- Use CTA colour: rgb(194, 255, 0) consistently
-- Keep design simple (black/white + green highlight)
+#### Importing Site
+- Install and Run Wordpress Installer `Tools -> Import`, this will pull site content and structure. 
 
-Free Trial Booking:
-- Must be accessible without contact (direct booking link/button)
+- During import:
+   - Assign content to an existing or new user (permissions)
+   - Enable **"Download and import file attachments"** (important for images)
 
-Hot Shots:
-- Highlight heavily (not just nav tab)
-- Include:
-  - Levels (colour-coded)
-  - Video per level
-  - Clear progression
+5. Run the importer and wait for completion
 
-Facility Promotion:
-- Use images + short descriptions on Home & Venue Hire page
 
-Store:
-- Keep disabled (service-based site)
-
-Coaches page:
-- Keep minimal
-- Emphasise expertise and professional advice
-
-Membership / Enrolment forms:
-- Upload to site (PDF or form embed)
-- Link from relevant pages (Social Tennis)

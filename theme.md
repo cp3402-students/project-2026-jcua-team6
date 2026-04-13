@@ -46,14 +46,24 @@ Font sizes scale using variables and media queries.
 
 ### 3. Navigation System
 
-- Uses `wp_nav_menu()` with `theme_location: menu-1`
-- Mobile menu toggle supported via `.menu-toggle`
-- Desktop layout uses Flexbox
+Navigation uses WordPress’s menu system:
+```css
+wp_nav_menu(array(
+  'theme_location' => 'menu-1'
+));
+```
 
 Features:
-- Menu links use `--link-color`
-- Hover state uses `--link-hover-color`
-- Supports dropdown menus (basic hover implementation)
+
+- Mobile-first design
+- Toggle menu (.menu-toggle) on small screens
+- Flexbox layout on desktop
+- Dropdown support via hover
+```css
+.main-navigation.toggled ul {
+display: block;
+}
+```
 
 ---
 
@@ -68,6 +78,17 @@ All buttons share consistent styling:
   - Slight lift (`translateY`)
   - Shadow effect
 
+```css 
+button,
+.wp-block-button__link {
+  background-color: var(--button-color);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+```
 Applies to:
 - `<button>`
 - Form inputs
@@ -88,26 +109,9 @@ Features:
 - Responsive image with `object-fit: cover`
 - Hover animation
 - Styled metadata and categories
-- Modern card-based layout
+- Card-based layout
 
 ---
-
-### 6. Footer Component
-
-Custom-built footer.
-
-Sections:
-- Contact
-- Hours
-- Social links
-- Tagline
-
-Uses CSS Grid for layout:
-- Responsive columns
-- Centered content
-
-Secitions are editable via: `<div class="footer-section footer-contact">` inside `functions.php`. The widgets themselves can be edited on Wordpress via its inbuitl editor in `Appearance -> Widgets`
-
 
 ## Key Files and Structure
 
@@ -135,15 +139,24 @@ Secitions are editable via: `<div class="footer-section footer-contact">` inside
 - Displays custom logo
 - Outputs navigation menu
 - Includes mobile menu toggle
-- Contains a hardcoded logo inside navigation
 
 ---
 
 ### Footer (`footer.php`)
+Sections:
+- Contact
+- Hours
+- Social links
+- Tagline
 
-- Static content (not dynamic widgets)
-- Uses translation functions (`esc_html_e`)
-- Contact information is hardcoded
+Uses CSS Grid for layout:
+- Responsive columns
+- Centered content
+
+Secitions are editable via: `<div class="footer-section footer-contact">` inside `functions.php`. The widgets themselves can be edited on Wordpress via its inbuilt editor in `Appearance -> Widgets`
+
+Theming and Styling is controlled by `styles.css` and is in the `.footer-widget` tag.
+
 
 ---
 
@@ -152,6 +165,7 @@ Secitions are editable via: `<div class="footer-section footer-contact">` inside
 - Uses WordPress loop
 - Loads content via:
   `get_template_part('template-parts/content', get_post_type());`
+- Contains Post content and structure
 
 ---
 
@@ -174,6 +188,9 @@ Component-based naming:
 - `.post-card-*`
 - `.footer-*`
 - `.main-navigation`
+- `.menu-button` -> Specifically for the Alternate colours on CTA button (`BOOK CLASSES NOW`)
+
+
 
 ---
 
@@ -184,111 +201,15 @@ Component-based naming:
 
 ---
 
-### 3. Mobile-First Design
-
-- Base styles for mobile
-- Media queries enhance for larger screens
-
----
-
-### 4. WordPress Standards
+### 3. WordPress Standards
 
 - Uses core functions:
   - `wp_head()`
   - `wp_footer()`
   - `esc_html_e()`
-- Follows Underscores structure
 
 ---
 
-## Important Design Decisions
 
-### 1. Centralised Styling
 
-All design values are stored in `:root`, allowing quick updates and consistency.
 
----
-
-### 2. Custom Footer
-
-Footer is hardcoded instead of using widgets.
-
-Pros:
-- Full design control
-
-Cons:
-- Not editable via WordPress admin
-
----
-
-### 3. Post Card Layout
-
-Uses modern card-based design instead of default WordPress post layout.
-
----
-
-### 4. Minimal JavaScript
-
-Most interactions (hover effects, animations) are handled with CSS.
-
----
-
-## Non-Obvious Details
-
-### 1. Duplicate Logo
-
-Two logos are present:
-- `the_custom_logo()`
-- Hardcoded `<img>` inside navigation
-
-This may cause duplication issues.
-
----
-
-### 2. Footer Uses `have_posts()`
-
-Footer contains a conditional check for posts, which is unnecessary and misleading.
-
----
-
-### 3. Entry Titles Hidden
-
-`.entry-title { display: none; }`
-
-This hides titles globally and may affect SEO and accessibility.
-
----
-
-### 4. Hardcoded Contact Information
-
-Footer contact details are static and not editable through WordPress.
-
----
-
-## Recommendations for Improvement
-
-- Convert footer to widget areas or Customizer settings
-- Remove duplicate logo in header
-- Make contact info dynamic (Customizer or ACF)
-- Re-enable entry titles where appropriate
-
----
-
-## Summary
-
-This theme is:
-
-- Built on Underscores (_s)
-- Structured and modular
-- Styled using a global design system
-- Focused on consistency and modern UI
-
-Strengths:
-- Easy to maintain and restyle
-- Clear structure
-- Reusable components
-
-Limitations:
-- Hardcoded content in footer
-- Minor structural quirks
-- Some non-standard implementation choices
